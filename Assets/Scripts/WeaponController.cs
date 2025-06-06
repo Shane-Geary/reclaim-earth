@@ -26,17 +26,10 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (FireAction.WasPressedThisFrame())
-        //{
-        //    animator.SetTrigger("Fire");
-        //    fireRateCooldown = 0.5f;
-        //    Debug.Log("Press Fire: " + fireRateCooldown);
-        //}
         if (FireAction.IsPressed())
         {
             fireRateCooldown -= Time.deltaTime;
-            Debug.Log("Hold Fire: " + fireRateCooldown);
-            if (fireRateCooldown <= 0)
+            if (fireRateCooldown <= 0.0f)
             {
                 animator.SetTrigger("Fire");
                 fireRateCooldown = 0.5f; // Reset cooldown
