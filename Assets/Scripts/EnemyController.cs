@@ -70,11 +70,11 @@ public class EnemyController : MonoBehaviour
         {
             Vector2 direction = (player.position - transform.position).normalized;
             Vector2 newPosition = rigidbody2d.position + enemySpeed * Time.fixedDeltaTime * direction;
-            if (!playerContact)
+			if (!playerContact)
 			{
-                rigidbody2d.MovePosition(newPosition);
-            }
-        }
+				rigidbody2d.MovePosition(newPosition);
+			}
+		}
     }
 
 	private void OnTriggerEnter2D(Collider2D other)
