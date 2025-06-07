@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     {
         MoveAction.Enable();
         rb = GetComponent<Rigidbody2D>();
+        enemyController = FindFirstObjectByType<EnemyController>();
 
         animator = GetComponentInChildren<Animator>();
         
@@ -55,32 +56,32 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(position);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("Collision with: " + other.gameObject.name);
-        if (other.gameObject.name.StartsWith("Enemy"))
-        {
-            enemyController = other.GetComponent<EnemyController>();
+    //void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    Debug.Log("Collision with: " + other.gameObject.name);
+    //    if (other.gameObject.name.StartsWith("Enemy"))
+    //    {
+    //        enemyController = other.GetComponent<EnemyController>();
 
-            if (!isInvisible)
-            {
-                OnDamageFromEnemy();
-            }
-        }
-    }
+    //        if (!isInvisible)
+    //        {
+    //            OnDamageFromEnemy();
+    //        }
+    //    }
+    //}
 
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.name.StartsWith("Enemy"))
-        {
-            if (!isInvisible)
-            {
-                OnDamageFromEnemy();
-            }
-        }
-    }
+    //void OnTriggerStay2D(Collider2D other)
+    //{
+    //    if (other.gameObject.name.StartsWith("Enemy"))
+    //    {
+    //        if (!isInvisible)
+    //        {
+    //            OnDamageFromEnemy();
+    //        }
+    //    }
+    //}
 
-    void OnDamageFromEnemy()
+    public void OnDamageFromEnemy()
     {
         isInvisible = true;
         characterHealth -= enemyController.enemyDamage;

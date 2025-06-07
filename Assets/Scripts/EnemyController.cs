@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
 	Rigidbody2D rigidbody2d;
 	//Projectile projectile;
 	EnemySpawner enemySpawner;
+	Animator animator;
+	PlayerController playerController;
 
 	public float enemySpeed;
 	public float enemyHealth;
@@ -19,7 +21,7 @@ public class EnemyController : MonoBehaviour
 	//private SpriteRenderer spriteRenderer;
 	//private float hitFlashTimer;
 	//private Color defaultColor;
-	private Transform player;
+	private Transform playerPosition;
 	private Vector2 movement;
 	private bool playerContact = false;
 
@@ -28,9 +30,11 @@ public class EnemyController : MonoBehaviour
 	{
 		rigidbody2d = GetComponent<Rigidbody2D>();
 		//spriteRenderer = GetComponent<SpriteRenderer>();
+		animator = GetComponentInChildren<Animator>();
+		playerController = FindFirstObjectByType<PlayerController>();
 
 		enemySpawner = FindFirstObjectByType<EnemySpawner>();
-		player = GameObject.FindGameObjectWithTag("Player").transform;
+		playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
 
 		//defaultColor = spriteRenderer.color;
 
@@ -40,7 +44,6 @@ public class EnemyController : MonoBehaviour
     {
         //hitFlashTimer = 0;
         //spriteRenderer.color = defaultColor;
-        player = GameObject.FindGameObjectWithTag("Player").transform;
         if (gameObject.CompareTag("EnemyGrunt"))
         {
             {
@@ -66,14 +69,18 @@ public class EnemyController : MonoBehaviour
 
 	void FixedUpdate()
 	{
-        if (player != null)
+        if (playerPosition != null)
         {
-            Vector2 direction = (player.position - transform.position).normalized;
+            Vector2 direction = (playerPosition.position - transform.position).normalized;
             Vector2 newPosition = rigidbody2d.position + enemySpeed * Time.fixedDeltaTime * direction;
 			if (!playerContact)
 			{
 				rigidbody2d.MovePosition(newPosition);
 			}
+			else
+			{
+                animator.SetTrigger("2_Attack");
+            }
 		}
     }
 
@@ -99,6 +106,7 @@ public class EnemyController : MonoBehaviour
 		else if (objectTagName == "Player")
 		{
 			playerContact = true;
+			
         }
 	}
 
@@ -109,6 +117,11 @@ public class EnemyController : MonoBehaviour
 			playerContact = false;
 		}
     }
+
+	public void OnAttackPlayer()
+	{
+		playerController.OnDamageFromEnemy();
+	}
 
     void PlayHitEffect(Vector2 hitPosition)
 	{
