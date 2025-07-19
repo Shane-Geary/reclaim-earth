@@ -48,7 +48,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 4513dd68a3ae33644a0aeb8b3eba0a1f, type: 2}
+  m_Motion: {fileID: 7400000, guid: c66e5eb2778574f1abbd40dcb05e1df7, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -76,7 +76,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: fed9f690c13398a4880b9f06e9c5d2e6, type: 2}
+  m_Motion: {fileID: 7400000, guid: 0957fd86be3e6744eb750c1cec040099, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -238,7 +238,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SPUMController
+  m_Name: SPUMControllerPlayer
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: 1_Move

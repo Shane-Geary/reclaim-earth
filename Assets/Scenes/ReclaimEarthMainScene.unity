@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserGun
       objectReference: {fileID: 0}
+    - target: {fileID: 855439269936296557, guid: cddf50621c6061a4ab6d0871b27d6991, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1805558209332739810, guid: cddf50621c6061a4ab6d0871b27d6991, type: 3}
       propertyPath: m_LocalScale.x
       value: -0.6667343
@@ -149,7 +153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1805558209332739810, guid: cddf50621c6061a4ab6d0871b27d6991, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.26666668
+      value: 0.2666667
       objectReference: {fileID: 0}
     - target: {fileID: 1805558209332739810, guid: cddf50621c6061a4ab6d0871b27d6991, type: 3}
       propertyPath: m_LocalPosition.z
@@ -157,19 +161,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1805558209332739810, guid: cddf50621c6061a4ab6d0871b27d6991, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9999239
+      value: 0.9999238
       objectReference: {fileID: 0}
     - target: {fileID: 1805558209332739810, guid: cddf50621c6061a4ab6d0871b27d6991, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.008726225
+      value: 0.008726224
       objectReference: {fileID: 0}
     - target: {fileID: 1805558209332739810, guid: cddf50621c6061a4ab6d0871b27d6991, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.008726225
+      value: 0.008726224
       objectReference: {fileID: 0}
     - target: {fileID: 1805558209332739810, guid: cddf50621c6061a4ab6d0871b27d6991, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000761528
+      value: -0.00007615269
       objectReference: {fileID: 0}
     - target: {fileID: 1805558209332739810, guid: cddf50621c6061a4ab6d0871b27d6991, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3003,6 +3007,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7200001416511769483, guid: 7cfd697fdf808dd40b7959057d92e353, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2c86af77a0aa61f47a87adef3e4eedbd, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3022,6 +3030,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4515843187437767079, guid: 7cfd697fdf808dd40b7959057d92e353, type: 3}
       insertIndex: -1
       addedObject: {fileID: 906753334}
+    - targetCorrespondingSourceObject: {fileID: 4515843187437767079, guid: 7cfd697fdf808dd40b7959057d92e353, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 906753339}
   m_SourcePrefab: {fileID: 100100000, guid: 7cfd697fdf808dd40b7959057d92e353, type: 3}
 --- !u!1 &710308791 stripped
 GameObject:
@@ -3179,6 +3190,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f99ee84c3ab7da46b3589d0a0c13161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &906753339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906753330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 222ca43662e950a4faaa815d7f2870b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &975827549
@@ -3449,11 +3472,15 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8802306203325602493, guid: 28df503c02167094c9d90ba530927f4f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e6643d9e683070f4cadf39c2270604ed, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4525601708664140677, guid: 28df503c02167094c9d90ba530927f4f, type: 3}
-      insertIndex: -1
+    - targetCorrespondingSourceObject: {fileID: 7393721456507371931, guid: 28df503c02167094c9d90ba530927f4f, type: 3}
+      insertIndex: 0
       addedObject: {fileID: 236395536}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8559739397419771550, guid: 28df503c02167094c9d90ba530927f4f, type: 3}

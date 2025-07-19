@@ -1,26 +1,24 @@
-//using UnityEngine;
+using UnityEngine;
 
-//public class PlayerController : MonoBehaviour
-//{
-//    public float speed = 5f;
+public class HeroAnimation : MonoBehaviour
+{
+    public float moveSpeed = 5f; // Speed of movement
 
-//    void Update()
-//    {
-//        if (Input.touchCount > 0) // Check if there is any touch
-//        {
-//            Touch touch = Input.GetTouch(0); // Get the first touch
+    void Start()
+    {
+        // Initialization code
+    }
 
-//            if (touch.phase == TouchPhase.Moved) // If the touch is moving
-//            {
-//                // Convert touch position to world position
-//                Vector3 touchPosition = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 0));
+    void Update()
+    {
+        // Get input from arrow keys or WASD
+        float horizontal = Input.GetAxis("Horizontal"); // Left/Right or A/D
+        float vertical = Input.GetAxis("Vertical");     // Up/Down or W/S
 
-//                // Restrict movement to x-axis
-//                Vector3 newPosition = new Vector3(touchPosition.x, transform.position.y, transform.position.z);
+        // Create a movement vector
+        Vector3 movement = new Vector3(horizontal, vertical, 0);
 
-//                // Move the character
-//                transform.position = Vector3.MoveTowards(transform.position, newPosition, speed * Time.deltaTime);
-//            }
-//        }
-//    }
-//}
+        // Move the player sprite
+        transform.position += movement * moveSpeed * Time.deltaTime;
+    }
+}
