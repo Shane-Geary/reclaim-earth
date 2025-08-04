@@ -6,7 +6,6 @@ will need to make adjustments with the final sprite assets and animations **/
 public class EnemyController : MonoBehaviour
 {
 	Rigidbody2D rigidbody2d;
-	//Projectile projectile;
 	EnemySpawner enemySpawner;
 	Animator animator;
 	PlayerController playerController;
@@ -15,7 +14,6 @@ public class EnemyController : MonoBehaviour
 	public float enemyHealth;
 	public float enemyDamage;
 
-	public ParticleSystem impactEffect;
 	public float destroyDelay = 0.5f; // Delay to allow particle effect to finish
 
 	//private SpriteRenderer spriteRenderer;
@@ -23,7 +21,7 @@ public class EnemyController : MonoBehaviour
 	//private Color defaultColor;
 	private Transform playerPosition;
 	private Vector2 movement;
-	private bool playerContact = false;
+	private bool barricadeContact = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -73,13 +71,14 @@ public class EnemyController : MonoBehaviour
 		{
 			Vector2 direction = (playerPosition.position - transform.position).normalized;
 			Vector2 newPosition = rigidbody2d.position + enemySpeed * Time.fixedDeltaTime * direction;
-			if (!playerContact)
+			if (!barricadeContact)
 			{
 				rigidbody2d.MovePosition(newPosition);
 				animator.SetBool("1_Move", true);
 			}
 			else
 			{
+				Debug.Log("Enemy Attack");
 				animator.SetTrigger("2_Attack");
 				animator.SetBool("1_Move", false);
 			}
@@ -105,34 +104,34 @@ public class EnemyController : MonoBehaviour
 				InitEnemy();
 			}
 		}
-		else if (objectTagName == "Player")
+		else if (objectTagName == "Barricade")
 		{
-			playerContact = true;
-			
+			barricadeContact = true;
         }
-	}
+
+    }
 
 	private void OnTriggerExit2D(Collider2D other)
 	{
-		if (other.gameObject.CompareTag("Player"))
+		if (other.gameObject.CompareTag("Barricade"))
 		{
-			playerContact = false;
+			barricadeContact = false;
 		}
     }
 
-	public void OnAttackPlayer()
-	{
-		playerController.OnDamageFromEnemy();
-	}
+	//public void OnAttackPlayer()
+	//{
+	//	playerController.OnDamageFromEnemy();
+	//}
 
-    void PlayHitEffect(Vector2 hitPosition)
-	{
-		//Debug.Log("hitPosition: " + hitPosition);
-		if (impactEffect != null)
-		{
-			ParticleSystem bloodEffect = Instantiate(impactEffect, hitPosition, Quaternion.identity);
-			bloodEffect.Play();
-			Destroy(bloodEffect.gameObject, destroyDelay);
-		}
-	}
+ //   void PlayHitEffect(Vector2 hitPosition)
+	//{
+	//	//Debug.Log("hitPosition: " + hitPosition);
+	//	if (impactEffect != null)
+	//	{
+	//		ParticleSystem bloodEffect = Instantiate(impactEffect, hitPosition, Quaternion.identity);
+	//		bloodEffect.Play();
+	//		Destroy(bloodEffect.gameObject, destroyDelay);
+	//	}
+	//}
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Projectile
   - EnemyGrunt
+  - Barricade
   layers:
   - Default
   - TransparentFX

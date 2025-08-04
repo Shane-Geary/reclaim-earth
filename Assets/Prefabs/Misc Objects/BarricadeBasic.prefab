@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 379992831430826484}
   - component: {fileID: 5027936308358110454}
   - component: {fileID: 6449635871701432794}
+  - component: {fileID: 5303728519664733769}
   m_Layer: 3
   m_Name: BarricadeBasic
-  m_TagString: Untagged
+  m_TagString: Barricade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,3 +135,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 0.5335054}
   m_EdgeRadius: 0
+--- !u!114 &5303728519664733769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7837930429587884851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 687ea96c82025f94794df3af12f34bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

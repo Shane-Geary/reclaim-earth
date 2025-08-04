@@ -45,7 +45,6 @@ public class PlayerController : MonoBehaviour
             {
                 isInvisible = false;
                 invisibleDuration = 2.0f; // Reset the duration for next hit
-                Debug.Log("Hero is now visible again.");
             }
         }
     }
@@ -81,20 +80,20 @@ public class PlayerController : MonoBehaviour
     //    }
     //}
 
-    public void OnDamageFromEnemy()
-    {
-        isInvisible = true;
-        characterHealth -= enemyController.enemyDamage;
-        Debug.Log("Hero Hit! Health: " + characterHealth);
+    //public void OnDamageFromEnemy()
+    //{
+    //    isInvisible = true;
+    //    characterHealth -= enemyController.enemyDamage;
+    //    //Debug.Log("Hero Hit! Health: " + characterHealth);
 
-        if (characterHealth > 0)
-        {
-            animator.SetTrigger("3_Damaged");
-        }
-        else
-        {
-            Debug.Log("Hero is Dead!");
-            //Destroy(gameObject);
-        }
-    }
+    //    if (characterHealth > 0)
+    //    {
+    //        animator.SetTrigger("3_Damaged");
+    //    }
+    //    else
+    //    {
+    //        //Debug.Log("Hero is Dead!");
+    //        //Destroy(gameObject);
+    //    }
+    //}
 }
