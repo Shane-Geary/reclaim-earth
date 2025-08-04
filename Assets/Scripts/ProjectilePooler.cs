@@ -6,8 +6,8 @@ public class ProjectilePooler : MonoBehaviour
     public GameObject projectilePrefab;
     private Queue<GameObject> projectilePoolQueue = new();
 
-    public int initialprojectilePoolSize = 10;
-    public int maxPoolSize = 50;
+    public int initialprojectilePoolSize = 20;
+    public int maxPoolSize = 40;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

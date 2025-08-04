@@ -69,20 +69,22 @@ public class EnemyController : MonoBehaviour
 
 	void FixedUpdate()
 	{
-        if (playerPosition != null)
-        {
-            Vector2 direction = (playerPosition.position - transform.position).normalized;
-            Vector2 newPosition = rigidbody2d.position + enemySpeed * Time.fixedDeltaTime * direction;
+		if (playerPosition != null)
+		{
+			Vector2 direction = (playerPosition.position - transform.position).normalized;
+			Vector2 newPosition = rigidbody2d.position + enemySpeed * Time.fixedDeltaTime * direction;
 			if (!playerContact)
 			{
 				rigidbody2d.MovePosition(newPosition);
+				animator.SetBool("1_Move", true);
 			}
 			else
 			{
-                animator.SetTrigger("2_Attack");
-            }
+				animator.SetTrigger("2_Attack");
+				animator.SetBool("1_Move", false);
+			}
 		}
-    }
+	}
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
