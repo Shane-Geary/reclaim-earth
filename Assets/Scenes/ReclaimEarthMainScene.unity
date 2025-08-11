@@ -218,9 +218,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 5303728519664733769, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7837930429587884851, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: m_Name
-      value: BarricadeBasic (1)
+      value: BarricadeBasic1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -388,9 +392,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 5303728519664733769, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7837930429587884851, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: m_Name
-      value: BarricadeBasic (7)
+      value: BarricadeBasic7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3295,9 +3303,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 5303728519664733769, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7837930429587884851, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: m_Name
-      value: BarricadeBasic (2)
+      value: BarricadeBasic2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3564,6 +3576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb8b5a7bfc137c34ea5e954b521cad36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentBarricadeSection: {fileID: 0}
   enemySpeed: 0
   enemyHealth: 0
   enemyDamage: 0
@@ -3961,9 +3974,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 5303728519664733769, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7837930429587884851, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: m_Name
-      value: BarricadeBasic (5)
+      value: BarricadeBasic5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4022,9 +4039,13 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5303728519664733769, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7837930429587884851, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: m_Name
-      value: BarricadeBasic (4)
+      value: BarricadeBasic4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4079,9 +4100,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 5303728519664733769, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7837930429587884851, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: m_Name
-      value: BarricadeBasic (3)
+      value: BarricadeBasic3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4136,9 +4161,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 5303728519664733769, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7837930429587884851, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: m_Name
-      value: BarricadeBasic (6)
+      value: BarricadeBasic6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4193,9 +4222,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 5303728519664733769, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7837930429587884851, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: m_Name
-      value: BarricadeBasic (8)
+      value: BarricadeBasic8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4451,13 +4484,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 5303728519664733769, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: isHit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5303728519664733769, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7837930429587884851, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: m_Name
-      value: BarricadeBasic
+      value: BarricadeBasic0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

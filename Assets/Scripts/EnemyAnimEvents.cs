@@ -4,13 +4,14 @@ using UnityEngine;
 public class EnemyAnimEvents : MonoBehaviour
 {
 
-    Barricade barricade;
+    //Barricade barricade;
     EnemyController parentController;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         parentController = GetComponentInParent<EnemyController>();
+
     }
 
     // Update is called once per frame
@@ -21,24 +22,10 @@ public class EnemyAnimEvents : MonoBehaviour
 
     public void EnemyAttackEvent()
     {
-        if (barricade != null)
+        if (parentController.currentBarricadeSection)
         {
-            barricade.health -= parentController.enemyDamage;
-            barricade.isHit = true;
+            parentController.currentBarricadeSection.TakeDamage(parentController.enemyDamage);
             //Debug.Log("Barricade health: " + barricade.health);
-        }
-    }
-
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Barricade"))
-        {
-            barricade = collision.gameObject.GetComponent<Barricade>();
-
-        }
-        else
-        {
-            Debug.Log("Collision with: " + collision.gameObject.name);
         }
     }
 }

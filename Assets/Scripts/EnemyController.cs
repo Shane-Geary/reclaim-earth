@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /** TODO - The majority of this is a placeholder/blueprint for the enemy controller.
@@ -9,6 +10,7 @@ public class EnemyController : MonoBehaviour
 	EnemySpawner enemySpawner;
 	Animator animator;
 	PlayerController playerController;
+	public Barricade currentBarricadeSection;
 
 	public float enemySpeed;
 	public float enemyHealth;
@@ -21,7 +23,6 @@ public class EnemyController : MonoBehaviour
 	//private Color defaultColor;
 	private Transform playerPosition;
 	private Vector2 movement;
-	private bool barricadeContact = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -47,7 +48,7 @@ public class EnemyController : MonoBehaviour
             {
                 enemySpeed = 0.5f;
                 enemyHealth = 1.0f;
-                enemyDamage = 0.15f;
+                enemyDamage = 0.05f;
             }
         }
     }
@@ -67,21 +68,23 @@ public class EnemyController : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if (playerPosition != null)
+		if (playerPosition)
 		{
 			Vector2 direction = (playerPosition.position - transform.position).normalized;
 			Vector2 newPosition = rigidbody2d.position + enemySpeed * Time.fixedDeltaTime * direction;
-			if (!barricadeContact)
+			if (!currentBarricadeSection)
 			{
 				rigidbody2d.MovePosition(newPosition);
 				animator.SetBool("1_Move", true);
 			}
 			else
 			{
-				Debug.Log("Enemy Attack");
-				animator.SetTrigger("2_Attack");
-				animator.SetBool("1_Move", false);
-			}
+                // Stop movement when barricade is present
+                rigidbody2d.linearVelocity = Vector2.zero;
+                animator.SetBool("1_Move", false);
+                Debug.Log("Enemy Attack");
+                animator.SetTrigger("2_Attack");
+            }
 		}
 	}
 
@@ -96,7 +99,6 @@ public class EnemyController : MonoBehaviour
 			//PlayHitEffect(projectile.projectileHitPosition);
 			//spriteRenderer.color = Color.red;
 			enemyHealth -= projectile.projectileDamage;
-			//Debug.Log("Enemy health: " + enemyHealth);
 			if (enemyHealth <= 0)
 			{
 				rigidbody2d.linearVelocity = Vector2.zero;
@@ -106,17 +108,18 @@ public class EnemyController : MonoBehaviour
 		}
 		else if (objectTagName == "Barricade")
 		{
-			barricadeContact = true;
+            currentBarricadeSection = other.GetComponent<Barricade>();
         }
 
     }
 
 	private void OnTriggerExit2D(Collider2D other)
 	{
-		if (other.gameObject.CompareTag("Barricade"))
+		Debug.Log("OnTriggerExit2D: " + other.gameObject.name);
+        if (other.gameObject.CompareTag("Barricade"))
 		{
-			barricadeContact = false;
-		}
+			currentBarricadeSection = null;
+        }
     }
 
 	//public void OnAttackPlayer()
