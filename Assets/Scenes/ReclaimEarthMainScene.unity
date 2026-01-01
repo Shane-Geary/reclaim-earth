@@ -222,6 +222,18 @@ PrefabInstance:
       propertyPath: health
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.427471
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.28626448
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.2332972
+      objectReference: {fileID: 0}
     - target: {fileID: 7837930429587884851, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: m_Name
       value: BarricadeBasic1
@@ -395,6 +407,18 @@ PrefabInstance:
     - target: {fileID: 5303728519664733769, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: health
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.427471
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.28626448
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.2332972
       objectReference: {fileID: 0}
     - target: {fileID: 7837930429587884851, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: m_Name
@@ -573,6 +597,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &341320660
 TilemapRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -591,6 +616,8 @@ TilemapRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -612,9 +639,11 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -9999
+  m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -622,7 +651,6 @@ TilemapRenderer:
   m_SortOrder: 0
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
-  m_MaskInteraction: 0
 --- !u!1839735485 &341320661
 Tilemap:
   m_ObjectHideFlags: 0
@@ -3046,7 +3074,6 @@ MonoBehaviour:
   m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
-  m_Version: 2
   m_TaaSettings:
     m_Quality: 3
     m_FrameInfluence: 0.1
@@ -3054,6 +3081,7 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -3063,7 +3091,7 @@ Camera:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 4
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -3307,6 +3335,18 @@ PrefabInstance:
       propertyPath: health
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.427471
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.28626448
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.2332972
+      objectReference: {fileID: 0}
     - target: {fileID: 7837930429587884851, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: m_Name
       value: BarricadeBasic2
@@ -3525,7 +3565,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0022463426, y: 0.3267624}
+  m_Offset: {x: -0.00224635, y: 0.13997453}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3535,7 +3575,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.47800624, y: 0.63645214}
+  m_Size: {x: 0.47800624, y: 0.25728518}
   m_EdgeRadius: 0
 --- !u!50 &710308793
 Rigidbody2D:
@@ -3545,11 +3585,11 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 710308791}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.2568576
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -3580,7 +3620,6 @@ MonoBehaviour:
   enemySpeed: 0
   enemyHealth: 0
   enemyDamage: 0
-  destroyDelay: 0.5
 --- !u!114 &710308797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3611,7 +3650,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3628,11 +3667,11 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0018223822, y: 0.12908518}
+  m_Offset: {x: -0.0011719987, y: 0.3327974}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3642,7 +3681,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.4777006, y: 0.23901232}
+  m_Size: {x: 0.4217685, y: 0.5791793}
   m_EdgeRadius: 0
 --- !u!114 &906753335
 MonoBehaviour:
@@ -3858,7 +3897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 710308791}
-  enemiesPerWave: 2
+  enemiesPerWave: 5
   spawnRate: 2
 --- !u!4 &1510412631
 Transform:
@@ -3978,6 +4017,18 @@ PrefabInstance:
       propertyPath: health
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.427471
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.28626448
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.2332972
+      objectReference: {fileID: 0}
     - target: {fileID: 7837930429587884851, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: m_Name
       value: BarricadeBasic5
@@ -4043,6 +4094,18 @@ PrefabInstance:
       propertyPath: health
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.427471
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.28626448
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.2332972
+      objectReference: {fileID: 0}
     - target: {fileID: 7837930429587884851, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: m_Name
       value: BarricadeBasic4
@@ -4103,6 +4166,18 @@ PrefabInstance:
     - target: {fileID: 5303728519664733769, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: health
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.427471
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.28626448
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.2332972
       objectReference: {fileID: 0}
     - target: {fileID: 7837930429587884851, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: m_Name
@@ -4165,6 +4240,18 @@ PrefabInstance:
       propertyPath: health
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.427471
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.28626448
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.2332972
+      objectReference: {fileID: 0}
     - target: {fileID: 7837930429587884851, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: m_Name
       value: BarricadeBasic6
@@ -4225,6 +4312,18 @@ PrefabInstance:
     - target: {fileID: 5303728519664733769, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: health
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.427471
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.28626448
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.2332972
       objectReference: {fileID: 0}
     - target: {fileID: 7837930429587884851, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: m_Name
@@ -4491,6 +4590,18 @@ PrefabInstance:
     - target: {fileID: 5303728519664733769, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: health
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.427471
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.28626448
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.2332972
       objectReference: {fileID: 0}
     - target: {fileID: 6449635871701432794, guid: c8d555e5a7866c44c9f3f05e98752ac0, type: 3}
       propertyPath: m_IsTrigger
