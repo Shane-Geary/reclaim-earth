@@ -2,9 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-/** TODO - The majority of this is a placeholder/blueprint for the enemy controller.
-will need to make adjustments with the final sprite assets and animations **/
-
 public class EnemyController : MonoBehaviour
 {
 	Rigidbody2D rigidbody2d;
@@ -23,9 +20,6 @@ public class EnemyController : MonoBehaviour
 	//private float hitFlashTimer;
 	//private Color defaultColor;
 	private Transform playerPosition;
-	private Vector2 movement;
-
-	private List<Barricade> overlappingBarricades = new();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -37,8 +31,6 @@ public class EnemyController : MonoBehaviour
 
 		enemySpawner = FindFirstObjectByType<EnemySpawner>();
 		playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
-
-		//defaultColor = spriteRenderer.color;
 
 		InitEnemy();
 	}
@@ -112,6 +104,7 @@ public class EnemyController : MonoBehaviour
 		else if (objectTagName == "Barricade")
 		{
             currentBarricadeSection = other.GetComponent<Barricade>();
+			Debug.Log("Enemy hit barricade" + other.gameObject.name);
         }
 
     }
