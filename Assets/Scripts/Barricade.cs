@@ -39,16 +39,6 @@ public class Barricade : MonoBehaviour
 
     }
 
-    // void HitFlash()
-    // {
-    //     // Flash the barricade when hit
-    //     SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-    //     Color originalColor = spriteRenderer.color;
-    //     spriteRenderer.color = Color.red;
-        // yield return new WaitForSeconds(0.3f);
-    //     // spriteRenderer.color = originalColor;
-    // }
-
     public void TakeDamage(float enemyDamage)
     {
         spriteRenderer.color = Color.red;

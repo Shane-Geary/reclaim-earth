@@ -105,7 +105,6 @@ public class EnemyController : MonoBehaviour
 		else if (objectTagName == "Barricade")
 		{
             currentBarricadeSection = other.GetComponent<Barricade>();
-			// Debug.Log("Enemy hit barricade" + other.gameObject.name);
 			OnAttackBarricade();
         }
     }
@@ -121,11 +120,8 @@ public class EnemyController : MonoBehaviour
 
 	public void OnAttackBarricade()
 	{
-		// if (currentBarricadeSection)
-		// {
 			animator.SetTrigger("2_Attack");
 			attackTimer = attackCooldown;
-		// }
 	}
 
  //   void PlayHitEffect(Vector2 hitPosition)
