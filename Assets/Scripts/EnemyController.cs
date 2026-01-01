@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 /** TODO - The majority of this is a placeholder/blueprint for the enemy controller.
@@ -23,6 +24,8 @@ public class EnemyController : MonoBehaviour
 	//private Color defaultColor;
 	private Transform playerPosition;
 	private Vector2 movement;
+
+	private List<Barricade> overlappingBarricades = new();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

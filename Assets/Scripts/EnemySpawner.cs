@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyPrefab;
 
     private int poolSize = 5;
-    public int enemiesPerWave = 2;
+    public int enemiesPerWave = 6;
     public float spawnRate = 2.0f;
     private float spawnXOffset = 2.0f;
     private Vector2 spawnYRange = new Vector2(-3.5f, 3.5f); // Min and max Y values for spawning
