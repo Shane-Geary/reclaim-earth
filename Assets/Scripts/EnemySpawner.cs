@@ -6,13 +6,13 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
 
-    private int poolSize = 5;
+    private readonly int poolSize = 5;
     public int enemiesPerWave = 6;
     public float spawnRate = 2.0f;
-    private float spawnXOffset = 2.0f;
+    private readonly float spawnXOffset = 2.0f;
     private Vector2 spawnYRange = new Vector2(-3.5f, 3.5f); // Min and max Y values for spawning
 
-    private float testPositionSpawn = 0f;
+    private readonly float testPositionSpawn = 0f;
 
     private Queue<GameObject> enemyPool;
     private int enemiesSpawned = 0;
