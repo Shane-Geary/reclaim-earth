@@ -13,8 +13,10 @@ public class EnemyController : MonoBehaviour
 	public float enemySpeed;
 	public float enemyHealth;
 	public float enemyDamage;
+	float attackTimer;
+	readonly float attackCooldown = 1.0f;
 
-	public float destroyDelay = 0.5f; // Delay to allow particle effect to finish
+	// public float destroyDelay = 0.5f; // Delay to allow particle effect to finish
 
 	//private SpriteRenderer spriteRenderer;
 	//private float hitFlashTimer;
@@ -51,14 +53,15 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
 	{
-		//if (hitFlashTimer > 0)
-		//{
-		//	hitFlashTimer -= Time.deltaTime;
-		//}
-		//else if (hitFlashTimer <= 0)
-		//{
-		//	spriteRenderer.color = defaultColor;
-		//}
+		Debug.Log(attackTimer);
+		if (attackTimer > 0)
+		{
+			attackTimer -= Time.deltaTime;
+			if (attackTimer <= 0)
+			{
+				OnAttackBarricade();
+			}
+		}
 	}
 
 	void FixedUpdate()
@@ -74,11 +77,9 @@ public class EnemyController : MonoBehaviour
 			}
 			else
 			{
-                // Stop movement when barricade is present
-                rigidbody2d.linearVelocity = Vector2.zero;
-                animator.SetBool("1_Move", false);
-                Debug.Log("Enemy Attack");
-                animator.SetTrigger("2_Attack");
+				// Stop movement when barricade is present
+				rigidbody2d.linearVelocity = Vector2.zero;
+				animator.SetBool("1_Move", false);
             }
 		}
 	}
@@ -104,9 +105,9 @@ public class EnemyController : MonoBehaviour
 		else if (objectTagName == "Barricade")
 		{
             currentBarricadeSection = other.GetComponent<Barricade>();
-			Debug.Log("Enemy hit barricade" + other.gameObject.name);
+			// Debug.Log("Enemy hit barricade" + other.gameObject.name);
+			OnAttackBarricade();
         }
-
     }
 
 	private void OnTriggerExit2D(Collider2D other)
@@ -118,10 +119,14 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-	//public void OnAttackPlayer()
-	//{
-	//	playerController.OnDamageFromEnemy();
-	//}
+	public void OnAttackBarricade()
+	{
+		// if (currentBarricadeSection)
+		// {
+			animator.SetTrigger("2_Attack");
+			attackTimer = attackCooldown;
+		// }
+	}
 
  //   void PlayHitEffect(Vector2 hitPosition)
 	//{

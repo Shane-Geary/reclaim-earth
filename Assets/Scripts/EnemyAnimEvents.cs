@@ -22,10 +22,10 @@ public class EnemyAnimEvents : MonoBehaviour
 
     public void EnemyAttackEvent()
     {
-        if (parentController.currentBarricadeSection)
-        {
-            parentController.currentBarricadeSection.TakeDamage(parentController.enemyDamage);
+        // if (parentController.currentBarricadeSection)
+        // {
+            parentController.currentBarricadeSection?.TakeDamage(parentController.enemyDamage);
             //Debug.Log("Barricade health: " + barricade.health);
-        }
+        // }
     }
 }

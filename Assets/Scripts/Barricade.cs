@@ -24,20 +24,19 @@ public class Barricade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    void FixedUpdate()
-    {
-        Debug.Log(flashTimer);
         if (flashTimer > 0)
         {
-            flashTimer -= Time.fixedDeltaTime;
+            flashTimer -= Time.deltaTime;
             if (flashTimer <= 0)
             {
                 spriteRenderer.color = originalColor; // Reset color after flash duration
             }
         }
+    }
+
+    void FixedUpdate()
+    {
+
     }
 
     // void HitFlash()
@@ -46,7 +45,7 @@ public class Barricade : MonoBehaviour
     //     SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
     //     Color originalColor = spriteRenderer.color;
     //     spriteRenderer.color = Color.red;
-    //     // yield return new WaitForSeconds(0.3f);
+        // yield return new WaitForSeconds(0.3f);
     //     // spriteRenderer.color = originalColor;
     // }
 
