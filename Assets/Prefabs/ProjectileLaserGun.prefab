@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -180159901550849717}
   - component: {fileID: 2198268388388097160}
   - component: {fileID: 5268171287651214158}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ProjectileLaserGun
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffbf240addf11a346b7cde07e7292e19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyAnimEvents: {fileID: 0}
   projectileDamage: 0.2
 --- !u!61 &2198268388388097160
 BoxCollider2D:
@@ -123,7 +124,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -172,10 +173,10 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 72
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1

@@ -5,6 +5,8 @@ public class Projectile : MonoBehaviour
 {
     Rigidbody2D rb;
     ProjectilePooler projectilePooller;
+
+    public EnemyController enemyController;
     // EnemyController enemyController;
 
     public float projectileDamage;
@@ -55,6 +57,8 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         EnemyController enemy = other.GetComponent<EnemyController>();
+
+        Debug.Log("Enemy hit: " + enemy);
         enemy?.TakeDamageFromProjectile(projectileDamage);
         ResetProjectile();
         if (projectilePooller != null)

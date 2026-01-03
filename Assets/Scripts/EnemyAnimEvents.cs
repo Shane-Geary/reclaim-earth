@@ -20,8 +20,22 @@ public class EnemyAnimEvents : MonoBehaviour
 
     }
 
+    // public void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     Debug.Log("Trigger detected with " + other.gameObject.name);
+    // }
+
     public void EnemyAttackEvent()
     {
             parentController.currentBarricadeSection?.TakeDamage(parentController.enemyDamage);
+    }
+
+    // public void EnemyDamagedEvent(float damage)
+    // {
+    //     parentController.TakeDamageFromProjectile(damage);
+    // }
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        parentController.TakeDamageFromProjectile(other.GetComponent<Projectile>().projectileDamage);
     }
 }

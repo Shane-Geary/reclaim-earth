@@ -104,6 +104,7 @@ public class EnemyController : MonoBehaviour
 			}
 			else
 			{
+				// Debug.Log("Barricade hit");
 				// Stop movement when barricade is present
 				rigidbody2d.linearVelocity = Vector2.zero;
 				animator.SetBool("1_Move", false);
