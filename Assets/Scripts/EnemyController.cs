@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -49,7 +50,10 @@ public class EnemyController : MonoBehaviour
 		originalColors = new Dictionary<SpriteRenderer, Color>();
 		foreach (SpriteRenderer sr in spriteRenderers)
 		{
-			originalColors[sr] = sr.color;
+			if (sr.gameObject.name != "Shadow")
+			{
+				originalColors[sr] = sr.color;
+			}
 		}
 	}
     void InitEnemy()
@@ -85,7 +89,10 @@ public class EnemyController : MonoBehaviour
             {
                 foreach (SpriteRenderer sr in spriteRenderers)
 				{
-					sr.color = originalColors[sr];
+					if (sr.gameObject.name != "Shadow")
+					{
+						sr.color = originalColors[sr];
+					}
 				}
             }
         }
@@ -104,7 +111,7 @@ public class EnemyController : MonoBehaviour
 			}
 			else
 			{
-				// Debug.Log("Barricade hit");
+				Debug.Log("Barricade hit");
 				// Stop movement when barricade is present
 				rigidbody2d.linearVelocity = Vector2.zero;
 				animator.SetBool("1_Move", false);
@@ -112,38 +119,45 @@ public class EnemyController : MonoBehaviour
 		}
 	}
 
-	private void OnTriggerEnter2D(Collider2D other)
-	{
-		string objectTagName = other.gameObject.tag;
-        if (objectTagName == "Projectile")
-		{
-			//hitFlashTimer = 0.5f;
+	// private void OnTriggerEnter2D(Collider2D other)
+	// {
+	// 	string objectTagName = other.gameObject.tag;
+    //     // if (objectTagName == "Projectile")
+	// 	// {
 
-			// Projectile projectile = other.gameObject.GetComponent<Projectile>();
-			//PlayHitEffect(projectile.projectileHitPosition);
-			//spriteRenderer.color = Color.red;
-			// enemyHealth -= projectile.projectileDamage;
-			// if (enemyHealth <= 0)
-			// {
-			// 	rigidbody2d.linearVelocity = Vector2.zero;
-			// 	enemySpawner.ReturnToPool(gameObject);
-			// 	InitEnemy();
-			// }
-		}
-		else if (objectTagName == "Barricade")
+	// 	// }
+	// 	if (objectTagName == "Barricade")
+	// 	{
+    //         currentBarricadeSection = other.GetComponent<Barricade>();
+	// 		OnAttackBarricade();
+    //     }
+    // }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("EnemyController detected collision with " + collision.gameObject.name);
+		if (collision.gameObject.CompareTag("Barricade"))
 		{
-            currentBarricadeSection = other.GetComponent<Barricade>();
+			currentBarricadeSection = collision.gameObject.GetComponent<Barricade>();
 			OnAttackBarricade();
-        }
+		}
     }
 
-	private void OnTriggerExit2D(Collider2D other)
+	private void OnCollisionExit2D(Collision2D collision)
 	{
-        if (other.gameObject.CompareTag("Barricade"))
+		if (collision.gameObject.CompareTag("Barricade"))
 		{
 			currentBarricadeSection = null;
-        }
-    }
+		}
+	}
+
+    // private void OnTriggerExit2D(Collider2D other)
+	// {
+    //     if (other.gameObject.CompareTag("Barricade"))
+	// 	{
+	// 		currentBarricadeSection = null;
+    //     }
+    // }
 
 	public void OnAttackBarricade()
 	{
@@ -155,7 +169,11 @@ public class EnemyController : MonoBehaviour
 	{
 		foreach (SpriteRenderer sr in spriteRenderers)
 		{
-			sr.color = Color.red;
+			// Debug.Log(sr.gameObject.name);
+			if (sr.gameObject.name != "Shadow")
+			{
+				sr.color = Color.red;
+			}
 		}
         flashTimer = flashDuration;
 		enemyHealth -= damage;
