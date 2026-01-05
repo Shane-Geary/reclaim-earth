@@ -119,20 +119,6 @@ public class EnemyController : MonoBehaviour
 		}
 	}
 
-	// private void OnTriggerEnter2D(Collider2D other)
-	// {
-	// 	string objectTagName = other.gameObject.tag;
-    //     // if (objectTagName == "Projectile")
-	// 	// {
-
-	// 	// }
-	// 	if (objectTagName == "Barricade")
-	// 	{
-    //         currentBarricadeSection = other.GetComponent<Barricade>();
-	// 		OnAttackBarricade();
-    //     }
-    // }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("EnemyController detected collision with " + collision.gameObject.name);
@@ -151,14 +137,6 @@ public class EnemyController : MonoBehaviour
 		}
 	}
 
-    // private void OnTriggerExit2D(Collider2D other)
-	// {
-    //     if (other.gameObject.CompareTag("Barricade"))
-	// 	{
-	// 		currentBarricadeSection = null;
-    //     }
-    // }
-
 	public void OnAttackBarricade()
 	{
 			animator.SetTrigger("2_Attack");
@@ -169,7 +147,6 @@ public class EnemyController : MonoBehaviour
 	{
 		foreach (SpriteRenderer sr in spriteRenderers)
 		{
-			// Debug.Log(sr.gameObject.name);
 			if (sr.gameObject.name != "Shadow")
 			{
 				sr.color = Color.red;
