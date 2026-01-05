@@ -58,8 +58,15 @@ public class EnemyController : MonoBehaviour
 	}
     void InitEnemy()
     {
-        //hitFlashTimer = 0;
-        //spriteRenderer.color = defaultColor;
+		flashTimer = 0f;
+		attackTimer = 0f;
+		foreach (SpriteRenderer sr in spriteRenderers)
+		{
+			if (sr.gameObject.name != "Shadow")
+			{
+				sr.color = originalColors[sr];
+			}
+		}
         if (gameObject.CompareTag("EnemyGrunt"))
         {
             {
@@ -157,6 +164,7 @@ public class EnemyController : MonoBehaviour
 		if (enemyHealth <= 0)
 		{
 			rigidbody2d.linearVelocity = Vector2.zero;
+			animator.ResetTrigger("2_Attack");
 			enemySpawner.ReturnToPool(gameObject);
 			InitEnemy();
 		}

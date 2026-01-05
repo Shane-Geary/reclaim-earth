@@ -3373,6 +3373,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 788843397354257261, guid: 7cfd697fdf808dd40b7959057d92e353, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 788843397354257261, guid: 7cfd697fdf808dd40b7959057d92e353, type: 3}
       propertyPath: m_TagString
       value: EnemyGrunt
       objectReference: {fileID: 0}
@@ -3901,8 +3905,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 710308791}
-  enemiesPerWave: 9
-  spawnRate: 2
+  enemiesPerWave: 10
+  spawnRate: 3
 --- !u!4 &1510412631
 Transform:
   m_ObjectHideFlags: 0

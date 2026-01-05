@@ -7,10 +7,8 @@ public class Projectile : MonoBehaviour
     ProjectilePooler projectilePooller;
 
     public EnemyController enemyController;
-    // EnemyController enemyController;
 
     public float projectileDamage;
-    // public Vector2 projectileHitPosition;
 
     private string targetName;
 
@@ -48,17 +46,16 @@ public class Projectile : MonoBehaviour
     {
         rb.angularVelocity = 0f;
         rb.angularVelocity = 0f;
-        // projectileHitPosition = Vector2.zero; // Reset hit position
 
         rb.AddForce(direction * force);
         projectilePooller = controller;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        EnemyController enemy = other.GetComponent<EnemyController>();
+        EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
 
-        Debug.Log("Enemy hit: " + enemy);
+        // Debug.Log("Enemy hit: " + enemy);
         enemy?.TakeDamageFromProjectile(projectileDamage);
         ResetProjectile();
         if (projectilePooller != null)
@@ -71,6 +68,5 @@ public class Projectile : MonoBehaviour
     {
         rb.linearVelocity = Vector2.zero; // Stop movement
         rb.angularVelocity = 0f;
-        // projectileHitPosition = Vector2.zero; // Clear hit position
     }
 }

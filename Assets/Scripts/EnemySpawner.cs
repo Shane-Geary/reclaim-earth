@@ -6,8 +6,8 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
 
-    private readonly int poolSize = 5;
-    public int enemiesPerWave = 6;
+    private readonly int poolSize = 10;
+    public int enemiesPerWave;
     public float spawnRate = 2.0f;
     private readonly float spawnXOffset = 2.0f;
     private Vector2 spawnYRange = new Vector2(-3.5f, 3.5f); // Min and max Y values for spawning
@@ -30,7 +30,6 @@ public class EnemySpawner : MonoBehaviour
         enemyPool = new Queue<GameObject>();
         for (int i = 0; i < poolSize; i++)
         {
-            // TODO - Pass data to 
             GameObject enemy = Instantiate(enemyPrefab);
             enemy.SetActive(false);
             enemyPool.Enqueue(enemy);
@@ -50,7 +49,7 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        if (enemyPool.Count > 0)
+        if (enemyPool.Count > 0  && enemiesSpawned < enemiesPerWave)
         {
             //testPositionSpawn = testPositionSpawn + 1;
             //Debug.Log("Spawning enemy: " + enemyPool.Count);
