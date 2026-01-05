@@ -12,7 +12,6 @@ public class EnemyController : MonoBehaviour
 	public Barricade currentBarricadeSection;
 
 	private SpriteRenderer[] spriteRenderers;
-	// private Color originalColor;
 	private Dictionary<SpriteRenderer, Color> originalColors;
 
 	public float enemySpeed;
@@ -23,8 +22,6 @@ public class EnemyController : MonoBehaviour
 
 	float flashTimer;
     readonly float flashDuration = 0.3f;
-
-	// public float destroyDelay = 0.5f; // Delay to allow particle effect to finish
 
 	//private SpriteRenderer spriteRenderer;
 	//private float hitFlashTimer;
@@ -169,15 +166,4 @@ public class EnemyController : MonoBehaviour
 			InitEnemy();
 		}
 	}
-
- //   void PlayHitEffect(Vector2 hitPosition)
-	//{
-	//	//Debug.Log("hitPosition: " + hitPosition);
-	//	if (impactEffect != null)
-	//	{
-	//		ParticleSystem bloodEffect = Instantiate(impactEffect, hitPosition, Quaternion.identity);
-	//		bloodEffect.Play();
-	//		Destroy(bloodEffect.gameObject, destroyDelay);
-	//	}
-	//}
 }
