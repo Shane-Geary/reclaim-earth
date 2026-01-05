@@ -8,11 +8,14 @@ public class WeaponController : MonoBehaviour
     Animator animator;
     Rigidbody2D rb;
 
-    public InputAction FireAction;
+    // public InputAction FireAction;
+    private bool fireHeld;
+    private float nextFireTime;
     public ProjectilePooler projectilePooler;
 
+    private float fireRate = 0.2f; // seconds between shots
     //private float timer;
-    private float fireRateCooldown;
+    // private float fireRateCooldown;
     public int projectileSpeed = 250;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,22 +23,49 @@ public class WeaponController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        FireAction.Enable();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (FireAction.IsPressed())
+        Debug.Log("Current time: " + Time.time);
+        Debug.Log("Next fire time: " + nextFireTime);
+        if (fireHeld && Time.time >= nextFireTime)
         {
-            fireRateCooldown -= Time.deltaTime;
-            if (fireRateCooldown <= 0.0f)
-            {
-                animator.SetTrigger("Fire");
-                fireRateCooldown = 0.5f; // Reset cooldown
-            }
+            TryFireInstant();
         }
     }
+
+    public void OnFirePressed()
+    {
+        fireHeld = true;
+        
+        if (Time.time >= nextFireTime)
+        {
+            TryFireInstant();
+        }
+    }
+
+    public void OnFireReleased()
+    {
+        fireHeld = false;
+    }
+
+    private void TryFireInstant()
+    {
+        animator.SetTrigger("Fire");
+        // Set next allowed fire time
+        nextFireTime = Time.time + fireRate;
+    }
+
+    // private void HandleFiring()
+    // {
+    //     if (fireHeld && Time.time >= nextFireTime)
+    //     {
+    //         animator.SetTrigger("Fire");
+    //         nextFireTime = Time.time + fireRate;
+    //     }
+    // }
 
     public void SpawnProjectile()
     {

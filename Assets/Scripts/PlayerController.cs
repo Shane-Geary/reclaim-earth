@@ -54,46 +54,4 @@ public class PlayerController : MonoBehaviour
         Vector2 position = (Vector2)rb.position + characterSpeed * Time.deltaTime * move;
         rb.MovePosition(position);
     }
-
-    //void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    Debug.Log("Collision with: " + other.gameObject.name);
-    //    if (other.gameObject.name.StartsWith("Enemy"))
-    //    {
-    //        enemyController = other.GetComponent<EnemyController>();
-
-    //        if (!isInvisible)
-    //        {
-    //            OnDamageFromEnemy();
-    //        }
-    //    }
-    //}
-
-    //void OnTriggerStay2D(Collider2D other)
-    //{
-    //    if (other.gameObject.name.StartsWith("Enemy"))
-    //    {
-    //        if (!isInvisible)
-    //        {
-    //            OnDamageFromEnemy();
-    //        }
-    //    }
-    //}
-
-    //public void OnDamageFromEnemy()
-    //{
-    //    isInvisible = true;
-    //    characterHealth -= enemyController.enemyDamage;
-    //    //Debug.Log("Hero Hit! Health: " + characterHealth);
-
-    //    if (characterHealth > 0)
-    //    {
-    //        animator.SetTrigger("3_Damaged");
-    //    }
-    //    else
-    //    {
-    //        //Debug.Log("Hero is Dead!");
-    //        //Destroy(gameObject);
-    //    }
-    //}
 }
