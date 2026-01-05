@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputController : MonoBehaviour
 {
-    [SerializeField] private WeaponController weaponController;
+    public WeaponController weaponController;
 
     public InputAction FireAction;
 
@@ -18,12 +18,12 @@ public class PlayerInputController : MonoBehaviour
     {
         if (FireAction.IsPressed())
         {
-            Debug.Log("Fire pressed");
-            weaponController.OnFirePressed();
+            // Debug.Log("Fire pressed");
+            weaponController.FireWeapon();
         }
-        if (FireAction.WasReleasedThisDynamicUpdate())
+        if (FireAction.WasReleasedThisFrame())
         {
-            Debug.Log("Fire released");
+            // Debug.Log("Fire released");
             weaponController.OnFireReleased();
         }
     }

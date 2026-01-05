@@ -8,15 +8,12 @@ public class WeaponController : MonoBehaviour
     Animator animator;
     Rigidbody2D rb;
 
-    // public InputAction FireAction;
-    private bool fireHeld;
-    private float nextFireTime;
+    private Projectile projectile;
     public ProjectilePooler projectilePooler;
 
-    private float fireRate = 0.2f; // seconds between shots
-    //private float timer;
-    // private float fireRateCooldown;
-    public int projectileSpeed = 250;
+    private float fireRate;
+    private readonly float fireCooldown = 0.2f; // seconds between shots
+    public int projectileSpeed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,52 +25,35 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Current time: " + Time.time);
-        Debug.Log("Next fire time: " + nextFireTime);
-        if (fireHeld && Time.time >= nextFireTime)
+        if (fireRate > 0)
         {
-            TryFireInstant();
-        }
-    }
-
-    public void OnFirePressed()
-    {
-        fireHeld = true;
-        
-        if (Time.time >= nextFireTime)
-        {
-            TryFireInstant();
+            fireRate -= Time.deltaTime;
+            Debug.Log("Fire rate cooldown: " + fireRate);
         }
     }
 
     public void OnFireReleased()
     {
-        fireHeld = false;
+        fireRate = 0f;
     }
 
-    private void TryFireInstant()
+    public void FireWeapon()
     {
-        animator.SetTrigger("Fire");
-        // Set next allowed fire time
-        nextFireTime = Time.time + fireRate;
+        if (fireRate <= 0)
+        {
+            Debug.Log("Firing weapon");
+            animator.SetTrigger("Fire");
+            fireRate = fireCooldown;
+        }
     }
-
-    // private void HandleFiring()
-    // {
-    //     if (fireHeld && Time.time >= nextFireTime)
-    //     {
-    //         animator.SetTrigger("Fire");
-    //         nextFireTime = Time.time + fireRate;
-    //     }
-    // }
 
     public void SpawnProjectile()
     {
-
         Vector3 spawnPosition = rb.position + Vector2.right * 0.1f;
         GameObject projectileObj = projectilePooler.GetFromPool(spawnPosition);
+        Debug.Log(projectileObj);
 
-        Projectile projectile = projectileObj.GetComponent<Projectile>();
+        projectile = projectileObj.GetComponent<Projectile>();
         if (projectile != null)
         {
             projectile.Launch(Vector2.right, projectileSpeed, projectilePooler);

@@ -324,6 +324,10 @@ PrefabInstance:
       value: f79c4c15-34fb-4ea2-a8ee-ae8b272f6d41
       objectReference: {fileID: 0}
     - target: {fileID: 4694718230720638856, guid: cddf50621c6061a4ab6d0871b27d6991, type: 3}
+      propertyPath: projectileSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694718230720638856, guid: cddf50621c6061a4ab6d0871b27d6991, type: 3}
       propertyPath: projectilePooler
       value: 
       objectReference: {fileID: 1242624214}
@@ -3905,7 +3909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 710308791}
-  enemiesPerWave: 10
+  enemiesPerWave: 0
   spawnRate: 3
 --- !u!4 &1510412631
 Transform:

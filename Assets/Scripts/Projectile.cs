@@ -47,7 +47,7 @@ public class Projectile : MonoBehaviour
         rb.angularVelocity = 0f;
         rb.angularVelocity = 0f;
 
-        rb.AddForce(direction * force);
+        rb.linearVelocity = direction * force;
         projectilePooller = controller;
     }
 
