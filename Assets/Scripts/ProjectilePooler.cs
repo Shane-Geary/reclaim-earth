@@ -16,6 +16,7 @@ public class ProjectilePooler : MonoBehaviour
         for (int i = 0; i < initialprojectilePoolSize; i++)
         {
             GameObject projectileObj = Instantiate(projectilePrefab);
+            Debug.Log(projectileObj);
             projectileObj.SetActive(false);
             projectilePoolQueue.Enqueue(projectileObj);
         }

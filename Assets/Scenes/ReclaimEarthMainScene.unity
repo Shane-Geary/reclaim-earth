@@ -324,6 +324,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4694718230720638856, guid: cddf50621c6061a4ab6d0871b27d6991, type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: -180159901550849717, guid: 5c6fd44e2bd37334592b147b03cb2c50, type: 3}
+    - target: {fileID: 4694718230720638856, guid: cddf50621c6061a4ab6d0871b27d6991, type: 3}
       propertyPath: FireAction.m_Id
       value: f79c4c15-34fb-4ea2-a8ee-ae8b272f6d41
       objectReference: {fileID: 0}

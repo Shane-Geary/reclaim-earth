@@ -8,7 +8,7 @@ public class WeaponController : MonoBehaviour
     Animator animator;
     Rigidbody2D rb;
 
-    public ProjectilePooler projectilePooler;
+    public GameObject projectilePooler;
 
     [SerializeField] private Transform projectileSpawnPoint;
 
@@ -29,9 +29,10 @@ public class WeaponController : MonoBehaviour
     {
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            Debug.Log("Fire Weapon");
+            projectilePooler = GameObject.Find("InfiniteAmmoClip");
+            Debug.Log("Pooler: " + projectilePooler);
             animator.Play("Fire", 0, 0f);
-            projectilePooler.GetFromPool(projectileSpawnPoint.position);
+            projectilePooler.GetComponent<ProjectilePooler>().GetFromPool(projectileSpawnPoint.position);
         }
     }
 
