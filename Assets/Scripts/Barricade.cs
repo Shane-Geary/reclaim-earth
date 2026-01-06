@@ -34,11 +34,6 @@ public class Barricade : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
-    {
-
-    }
-
     public void TakeDamage(float enemyDamage)
     {
         spriteRenderer.color = Color.red;

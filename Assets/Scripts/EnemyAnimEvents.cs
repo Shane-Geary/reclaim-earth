@@ -12,12 +12,6 @@ public class EnemyAnimEvents : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void EnemyAttackEvent()
     {
             parentController.currentBarricadeSection?.TakeDamage(parentController.enemyDamage);

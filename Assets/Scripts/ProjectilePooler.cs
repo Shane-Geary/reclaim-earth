@@ -51,7 +51,6 @@ public class ProjectilePooler : MonoBehaviour
 
     public void ReturnToPool(GameObject obj)
     {
-        Debug.Log(obj);
         obj.SetActive(false);
         projectilePoolQueue.Enqueue(obj);
     }
