@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Projectile : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class Projectile : MonoBehaviour
     private readonly float defaultSpeed = 4.0f;
 
     private float minX, maxX, minY, maxY;
+
+    [SerializeField] private LayerMask enemyLayer;
 
     void Awake()
     {
@@ -62,8 +65,10 @@ public class Projectile : MonoBehaviour
     {
         EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
 
-        // Debug.Log("Enemy hit: " + enemy);
-        enemy?.TakeDamageFromProjectile(projectileDamage);
+        SortingGroup yAxisSort = collision.gameObject.GetComponentInChildren<SortingGroup>();
+        Debug.Log("Collided with: " + yAxisSort.sortingOrder);
+
+        // enemy?.TakeDamageFromProjectile(projectileDamage);
         ResetProjectile();
     }
 

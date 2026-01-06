@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: -180159901550849717}
   - component: {fileID: 5268171287651214158}
   - component: {fileID: 2198268388388097160}
+  - component: {fileID: 163806783863766350}
+  - component: {fileID: 2249463287778725706}
   m_Layer: 8
   m_Name: ProjectileLaserGun
   m_TagString: Projectile
@@ -106,10 +108,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffbf240addf11a346b7cde07e7292e19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyController: {fileID: 0}
   projectileDamage: 0.1
-  projectileSpeed: 5
-  defaultSpeed: 2
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!50 &5268171287651214158
 Rigidbody2D:
   serializedVersion: 5
@@ -135,7 +137,7 @@ Rigidbody2D:
     m_Bits: 72
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!61 &2198268388388097160
 BoxCollider2D:
@@ -171,7 +173,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.00006890297, y: 0.000057322904}
+  m_Offset: {x: -0.00006887317, y: -0.0000042458996}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -181,5 +183,30 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.17596292, y: 0.08086227}
+  m_Size: {x: 0.11076552, y: 0.05069107}
   m_EdgeRadius: 0
+--- !u!114 &163806783863766350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6731860930437854220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f99ee84c3ab7da46b3589d0a0c13161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YAxisSort
+--- !u!210 &2249463287778725706
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6731860930437854220}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 5
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0

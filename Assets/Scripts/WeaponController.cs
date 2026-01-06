@@ -12,7 +12,7 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField] private Transform projectileSpawnPoint;
 
-    private readonly float fireRate = 0.5f; // Time between shots in seconds
+    private readonly float fireRate = 1.0f; // Time between shots in seconds
     private float nextFireTime = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
