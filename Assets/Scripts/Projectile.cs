@@ -1,10 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Projectile : MonoBehaviour
 {
-    Rigidbody2D rb;
-    private Projectile projectile;
+    private Rigidbody2D rb;
     public ProjectilePooler projectilePooler;
 
     public EnemyController enemyController;
@@ -14,44 +14,77 @@ public class Projectile : MonoBehaviour
 
     private string targetName;
 
+    [SerializeField] private float defaultSpeed = 15f;
+
+    private Dictionary<string, float> cameraBounds = new();
+    private float camHeight;
+    private float camWidth;
+
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
         targetName = gameObject.name;
 
         if (targetName == "ProjectileLaserGun(Clone)")
         {
             projectileDamage = 0.1f;
         }
+
+        Camera cam = Camera.main;
+        camHeight = 2f * cam.orthographicSize;
+        camWidth = camHeight * cam.aspect;
+        cameraBounds["minX"] = cam.transform.position.x - camWidth / 2;
+        cameraBounds["maxX"] = cam.transform.position.x + camWidth / 2;
+        cameraBounds["minY"] = cam.transform.position.y - camHeight / 2;
+        cameraBounds["maxY"] = cam.transform.position.y + camHeight / 2;
+    }
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        projectilePooler = FindFirstObjectByType<ProjectilePooler>();
+        LaunchProjectile();
     }
 
     void FixedUpdate()
     {
-        Camera cam = Camera.main;
-        float camHeight = 2f * cam.orthographicSize;
-        float camWidth = camHeight * cam.aspect;
-
-        float minX = cam.transform.position.x - camWidth / 2;
-        float maxX = cam.transform.position.x + camWidth / 2;
-        float minY = cam.transform.position.y - camHeight / 2;
-        float maxY = cam.transform.position.y + camHeight / 2;
-
-        if (transform.position.x < minX || transform.position.x > maxX ||
-            transform.position.y < minY || transform.position.y > maxY)
+        // TODO: Why did I think recalculating camera bounds every frame was a good idea?
+        if (transform.position.x < cameraBounds["minX"] || transform.position.x > cameraBounds["maxX"] ||
+            transform.position.y < cameraBounds["minY"] || transform.position.y > cameraBounds["maxY"])
         {
+            Debug.Log("Projectile out of bounds");
             ResetProjectile();
-            projectilePooler.ReturnToPool(gameObject);
         }
+
+        // Camera cam = Camera.main;
+        // float camHeight = 2f * cam.orthographicSize;
+        // float camWidth = camHeight * cam.aspect;
+
+        // float minX = cam.transform.position.x - camWidth / 2;
+        // float maxX = cam.transform.position.x + camWidth / 2;
+        // float minY = cam.transform.position.y - camHeight / 2;
+        // float maxY = cam.transform.position.y + camHeight / 2;
+
+        // if (transform.position.x < minX || transform.position.x > maxX ||
+        //     transform.position.y < minY || transform.position.y > maxY)
+        // {
+        //     ResetProjectile();
+        //     projectilePooler.ReturnToPool(gameObject);
+        // }
     }
 
-    public void Launch(Vector2 direction, float force, ProjectilePooler controller)
+    public void LaunchProjectile()
     {
-        rb.angularVelocity = 0f;
-        rb.angularVelocity = 0f;
-
-        rb.linearVelocity = direction * force;
-        projectilePooler = controller;
+        rb.linearVelocity = transform.right * defaultSpeed;
     }
+
+    // public void Launch(Vector2 direction, float force, ProjectilePooler controller)
+    // {
+    //     rb.angularVelocity = 0f;
+    //     rb.angularVelocity = 0f;
+
+    //     rb.linearVelocity = direction * force;
+    //     projectilePooler = controller;
+    // }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -60,31 +93,12 @@ public class Projectile : MonoBehaviour
         // Debug.Log("Enemy hit: " + enemy);
         enemy?.TakeDamageFromProjectile(projectileDamage);
         ResetProjectile();
-        if (projectilePooler != null)
-        {
-            projectilePooler.ReturnToPool(gameObject);
-        }
-    }
-
-    public void SpawnProjectile()
-    {
-        Vector3 spawnPosition = rb.position + Vector2.right * 0.1f;
-        GameObject projectileObj = projectilePooler.GetFromPool(spawnPosition);
-
-        projectile = projectileObj.GetComponent<Projectile>();
-        if (projectile != null)
-        {
-            projectile.Launch(Vector2.right, projectileSpeed, projectilePooler);
-        }
-        else
-        {
-            Debug.Log("Projectile component is null");
-        }
     }
 
     private void ResetProjectile()
     {
         rb.linearVelocity = Vector2.zero; // Stop movement
         rb.angularVelocity = 0f;
+        projectilePooler.ReturnToPool(gameObject);
     }
 }

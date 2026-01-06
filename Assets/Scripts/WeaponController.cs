@@ -8,46 +8,46 @@ public class WeaponController : MonoBehaviour
     Animator animator;
     Rigidbody2D rb;
 
-    private float fireRate = 0f;
-    private readonly float fireCooldown = 1f; // seconds between shots
+    public ProjectilePooler projectilePooler;
 
-    Projectile projectilePrefab;
+    [SerializeField] private Transform projectileSpawnPoint;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        projectilePrefab = GetComponent<Projectile>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (fireRate > 0)
-        {
-            fireRate -= Time.deltaTime;
-            // Debug.Log("Fire rate cooldown: " + fireRate);
-        }
-    }
-
-    public void OnFireReleased()
-    {
-        fireRate = 0f;
+        FireWeapon();
     }
 
     public void FireWeapon()
     {
-        if (fireRate <= 0)
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            Debug.Log("Firing weapon");
-            animator.SetTrigger("Fire");
-            fireRate = fireCooldown;
+            Debug.Log("Fire Weapon");
+            animator.Play("Fire", 0, 0f);
+            projectilePooler.GetFromPool(projectileSpawnPoint.position);
         }
     }
 
-    public void ProjectileLaunchEvent()
-    {
-        projectilePrefab.SpawnProjectile();
-    }
+    // public void SpawnProjectile()
+    // {
+    //     Vector3 spawnPosition = rb.position + Vector2.right * 0.1f;
+    //     GameObject projectileObj = projectilePooler.GetFromPool(spawnPosition);
+
+        // projectile = projectileObj.GetComponent<Projectile>();
+    //     if (projectile != null)
+    //     {
+    //         projectile.Launch(Vector2.right, projectileSpeed, projectilePooler);
+    //     }
+    //     else
+    //     {
+    //         Debug.Log("Projectile component is null");
+    //     }
+    // }
 }

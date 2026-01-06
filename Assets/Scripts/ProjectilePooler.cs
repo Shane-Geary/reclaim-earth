@@ -6,8 +6,8 @@ public class ProjectilePooler : MonoBehaviour
     public GameObject projectilePrefab;
     private Queue<GameObject> projectilePoolQueue = new();
 
-    public int initialprojectilePoolSize = 20;
-    public int maxPoolSize = 40;
+    private readonly int initialprojectilePoolSize = 20;
+    private readonly int maxPoolSize = 40;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,6 +38,7 @@ public class ProjectilePooler : MonoBehaviour
             if (projectilePoolQueue.Count < maxPoolSize)
             {
                 GameObject newObj = Instantiate(projectilePrefab, position, Quaternion.identity);
+                Debug.Log("Instantiate new projectile ");
                 return newObj;
             }
             else
@@ -50,6 +51,7 @@ public class ProjectilePooler : MonoBehaviour
 
     public void ReturnToPool(GameObject obj)
     {
+        Debug.Log(obj);
         obj.SetActive(false);
         projectilePoolQueue.Enqueue(obj);
     }
