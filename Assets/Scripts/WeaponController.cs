@@ -8,18 +8,17 @@ public class WeaponController : MonoBehaviour
     Animator animator;
     Rigidbody2D rb;
 
-    private Projectile projectile;
-    public ProjectilePooler projectilePooler;
+    private float fireRate = 0f;
+    private readonly float fireCooldown = 1f; // seconds between shots
 
-    private float fireRate;
-    private readonly float fireCooldown = 0.2f; // seconds between shots
-    public int projectileSpeed;
+    Projectile projectilePrefab;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        projectilePrefab = GetComponent<Projectile>();
     }
 
     // Update is called once per frame
@@ -28,7 +27,7 @@ public class WeaponController : MonoBehaviour
         if (fireRate > 0)
         {
             fireRate -= Time.deltaTime;
-            Debug.Log("Fire rate cooldown: " + fireRate);
+            // Debug.Log("Fire rate cooldown: " + fireRate);
         }
     }
 
@@ -47,20 +46,8 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    public void SpawnProjectile()
+    public void ProjectileLaunchEvent()
     {
-        Vector3 spawnPosition = rb.position + Vector2.right * 0.1f;
-        GameObject projectileObj = projectilePooler.GetFromPool(spawnPosition);
-        Debug.Log(projectileObj);
-
-        projectile = projectileObj.GetComponent<Projectile>();
-        if (projectile != null)
-        {
-            projectile.Launch(Vector2.right, projectileSpeed, projectilePooler);
-        }
-        else
-        {
-            Debug.Log("Projectile component is null");
-        }
+        projectilePrefab.SpawnProjectile();
     }
 }

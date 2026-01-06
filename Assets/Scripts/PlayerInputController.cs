@@ -10,7 +10,9 @@ public class PlayerInputController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        FireAction.Enable();    
+        // FireAction.performed += ctx => weaponController.FireWeapon(); // fires once per key press
+        // FireAction.canceled += ctx => weaponController.OnFireReleased();
+        FireAction.Enable();   
     }
 
     // Update is called once per frame
@@ -18,7 +20,7 @@ public class PlayerInputController : MonoBehaviour
     {
         if (FireAction.IsPressed())
         {
-            // Debug.Log("Fire pressed");
+            Debug.Log("Fire pressed");
             weaponController.FireWeapon();
         }
         if (FireAction.WasReleasedThisFrame())

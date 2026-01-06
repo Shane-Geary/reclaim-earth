@@ -4,11 +4,13 @@ using UnityEngine.InputSystem;
 public class Projectile : MonoBehaviour
 {
     Rigidbody2D rb;
-    ProjectilePooler projectilePooller;
+    private Projectile projectile;
+    public ProjectilePooler projectilePooler;
 
     public EnemyController enemyController;
 
     public float projectileDamage;
+    public int projectileSpeed;
 
     private string targetName;
 
@@ -38,7 +40,7 @@ public class Projectile : MonoBehaviour
             transform.position.y < minY || transform.position.y > maxY)
         {
             ResetProjectile();
-            projectilePooller.ReturnToPool(gameObject);
+            projectilePooler.ReturnToPool(gameObject);
         }
     }
 
@@ -48,7 +50,7 @@ public class Projectile : MonoBehaviour
         rb.angularVelocity = 0f;
 
         rb.linearVelocity = direction * force;
-        projectilePooller = controller;
+        projectilePooler = controller;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -58,9 +60,25 @@ public class Projectile : MonoBehaviour
         // Debug.Log("Enemy hit: " + enemy);
         enemy?.TakeDamageFromProjectile(projectileDamage);
         ResetProjectile();
-        if (projectilePooller != null)
+        if (projectilePooler != null)
         {
-            projectilePooller.ReturnToPool(gameObject);
+            projectilePooler.ReturnToPool(gameObject);
+        }
+    }
+
+    public void SpawnProjectile()
+    {
+        Vector3 spawnPosition = rb.position + Vector2.right * 0.1f;
+        GameObject projectileObj = projectilePooler.GetFromPool(spawnPosition);
+
+        projectile = projectileObj.GetComponent<Projectile>();
+        if (projectile != null)
+        {
+            projectile.Launch(Vector2.right, projectileSpeed, projectilePooler);
+        }
+        else
+        {
+            Debug.Log("Projectile component is null");
         }
     }
 
