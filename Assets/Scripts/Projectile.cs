@@ -1,20 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Projectile : MonoBehaviour
 {
     private Rigidbody2D rb;
     private ProjectilePooler projectilePooler;
 
-    public EnemyController enemyController;
+    // public EnemyController enemyController;
 
     public float projectileDamage;
-    public int projectileSpeed;
 
     private string targetName;
 
-    [SerializeField] private float defaultSpeed = 2f;
+    private readonly float defaultSpeed = 4.0f;
 
     private float minX, maxX, minY, maxY;
 

@@ -8,7 +8,7 @@ public class WeaponController : MonoBehaviour
     Animator animator;
     Rigidbody2D rb;
 
-    public GameObject projectilePooler;
+    public ProjectilePooler projectilePooler;
 
     [SerializeField] private Transform projectileSpawnPoint;
 
@@ -25,7 +25,6 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("spacekey pressed: " + Keyboard.current.spaceKey.IsPressed());
         if (Time.time >= nextFireTime)
         {
             FireWeapon();
@@ -37,9 +36,12 @@ public class WeaponController : MonoBehaviour
         if (Keyboard.current.spaceKey.IsPressed())
         {
             nextFireTime = Time.time + fireRate;
-            projectilePooler = GameObject.Find("InfiniteAmmoClip");
             animator.Play("Fire", 0, 0f);
-            projectilePooler.GetComponent<ProjectilePooler>().GetFromPool(projectileSpawnPoint.position);
+            projectilePooler.GetFromPool(projectileSpawnPoint.position);
+        }
+        if (!Keyboard.current.spaceKey.IsPressed())
+        {
+            animator.StopPlayback();
         }
     }
 }
