@@ -16,7 +16,7 @@ public class Projectile : MonoBehaviour
 
     [SerializeField] private float defaultSpeed = 15f;
 
-    private Dictionary<string, float> cameraBounds = new();
+    private readonly Dictionary<string, float> cameraBounds = new();
     private float camHeight;
     private float camWidth;
 
@@ -26,7 +26,6 @@ public class Projectile : MonoBehaviour
         projectilePooler = GameObject.Find("InfiniteAmmoClip");
 
         targetName = gameObject.name;
-
         if (targetName == "ProjectileLaserGun(Clone)")
         {
             projectileDamage = 0.1f;

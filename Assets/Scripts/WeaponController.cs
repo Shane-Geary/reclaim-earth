@@ -35,20 +35,4 @@ public class WeaponController : MonoBehaviour
             projectilePooler.GetComponent<ProjectilePooler>().GetFromPool(projectileSpawnPoint.position);
         }
     }
-
-    // public void SpawnProjectile()
-    // {
-    //     Vector3 spawnPosition = rb.position + Vector2.right * 0.1f;
-    //     GameObject projectileObj = projectilePooler.GetFromPool(spawnPosition);
-
-        // projectile = projectileObj.GetComponent<Projectile>();
-    //     if (projectile != null)
-    //     {
-    //         projectile.Launch(Vector2.right, projectileSpeed, projectilePooler);
-    //     }
-    //     else
-    //     {
-    //         Debug.Log("Projectile component is null");
-    //     }
-    // }
 }

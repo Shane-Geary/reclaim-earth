@@ -16,7 +16,6 @@ public class ProjectilePooler : MonoBehaviour
         for (int i = 0; i < initialprojectilePoolSize; i++)
         {
             GameObject projectileObj = Instantiate(projectilePrefab);
-            Debug.Log(projectileObj);
             projectileObj.SetActive(false);
             projectilePoolQueue.Enqueue(projectileObj);
         }
@@ -30,7 +29,7 @@ public class ProjectilePooler : MonoBehaviour
             GameObject obj = projectilePoolQueue.Dequeue();
             obj.SetActive(true);
             obj.transform.position = position;
-            Debug.Log("Retreive from pool ");
+            // Debug.Log("Retreive from pool ");
             return obj;
         }
         else
@@ -39,7 +38,7 @@ public class ProjectilePooler : MonoBehaviour
             if (projectilePoolQueue.Count < maxPoolSize)
             {
                 GameObject newObj = Instantiate(projectilePrefab, position, Quaternion.identity);
-                Debug.Log("Instantiate new projectile ");
+                // Debug.Log("Instantiate new projectile ");
                 return newObj;
             }
             else
