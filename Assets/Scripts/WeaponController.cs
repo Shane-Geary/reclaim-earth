@@ -41,7 +41,7 @@ public class WeaponController : MonoBehaviour
         }
         if (!Keyboard.current.spaceKey.IsPressed())
         {
-            animator.StopPlayback();
+            animator.Play("Idle", 0, 0f);
         }
     }
 }
