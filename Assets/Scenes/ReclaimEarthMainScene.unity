@@ -4319,12 +4319,12 @@ GameObject:
   - component: {fileID: 1662791278}
   - component: {fileID: 1662791277}
   m_Layer: 5
-  m_Name: UIDocument
+  m_Name: GameplayUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1662791277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4337,6 +4337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4824bf218a9fe014a812f07b858d7683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BarricadeHealthUI
+  barricade: {fileID: 0}
 --- !u!114 &1662791278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5084,6 +5085,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 1292493786}
+  - {fileID: 1662791279}
   - {fileID: 1242624215}
   - {fileID: 1510412631}
   - {fileID: 975827551}
@@ -5102,5 +5104,4 @@ SceneRoots:
   - {fileID: 6676299480380167830}
   - {fileID: 2069799839130501784}
   - {fileID: 710308790}
-  - {fileID: 1662791279}
   - {fileID: 983917402}
