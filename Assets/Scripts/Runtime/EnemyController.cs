@@ -136,11 +136,11 @@ public class EnemyController : MonoBehaviour
 
 	public void OnAttackBarricade()
 	{
-			animator.SetTrigger("2_Attack");
-			attackTimer = attackCooldown;
+		animator.SetTrigger("2_Attack");
+		attackTimer = attackCooldown;
 	}
 
-	public void TakeDamageFromProjectile(float damage)
+	public void TakeDamage(float damage)
 	{
 		foreach (SpriteRenderer sr in spriteRenderers)
 		{

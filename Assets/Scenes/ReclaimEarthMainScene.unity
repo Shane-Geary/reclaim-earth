@@ -3515,6 +3515,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 4515843187437767079, guid: 7cfd697fdf808dd40b7959057d92e353, type: 3}
+      propertyPath: m_TagString
+      value: EnemyGrunt
+      objectReference: {fileID: 0}
     - target: {fileID: 6193113643026966317, guid: 7cfd697fdf808dd40b7959057d92e353, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
@@ -3547,9 +3551,6 @@ PrefabInstance:
       insertIndex: 1
       addedObject: {fileID: 710308794}
     - targetCorrespondingSourceObject: {fileID: 788843397354257261, guid: 7cfd697fdf808dd40b7959057d92e353, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 710308797}
-    - targetCorrespondingSourceObject: {fileID: 788843397354257261, guid: 7cfd697fdf808dd40b7959057d92e353, type: 3}
       insertIndex: -1
       addedObject: {fileID: 710308793}
     - targetCorrespondingSourceObject: {fileID: 788843397354257261, guid: 7cfd697fdf808dd40b7959057d92e353, type: 3}
@@ -3557,13 +3558,13 @@ PrefabInstance:
       addedObject: {fileID: 710308792}
     - targetCorrespondingSourceObject: {fileID: 4515843187437767079, guid: 7cfd697fdf808dd40b7959057d92e353, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 906753343}
+    - targetCorrespondingSourceObject: {fileID: 4515843187437767079, guid: 7cfd697fdf808dd40b7959057d92e353, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 906753335}
     - targetCorrespondingSourceObject: {fileID: 4515843187437767079, guid: 7cfd697fdf808dd40b7959057d92e353, type: 3}
       insertIndex: -1
       addedObject: {fileID: 906753334}
-    - targetCorrespondingSourceObject: {fileID: 4515843187437767079, guid: 7cfd697fdf808dd40b7959057d92e353, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 906753339}
   m_SourcePrefab: {fileID: 100100000, guid: 7cfd697fdf808dd40b7959057d92e353, type: 3}
 --- !u!1 &710308791 stripped
 GameObject:
@@ -3586,7 +3587,7 @@ BoxCollider2D:
     m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 448
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -3659,18 +3660,6 @@ MonoBehaviour:
   enemySpeed: 0
   enemyHealth: 0
   enemyDamage: 0
---- !u!114 &710308797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 710308791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 412e952c49f44824fa61797febdaae7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &906753330 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4515843187437767079, guid: 7cfd697fdf808dd40b7959057d92e353, type: 3}
@@ -3689,10 +3678,10 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 192
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -3734,7 +3723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f99ee84c3ab7da46b3589d0a0c13161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &906753339
+--- !u!114 &906753343
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3745,7 +3734,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 222ca43662e950a4faaa815d7f2870b0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Game.Runtime::EnemyHitBox
 --- !u!1 &975827549
 GameObject:
   m_ObjectHideFlags: 0
