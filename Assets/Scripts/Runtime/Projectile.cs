@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -46,9 +45,10 @@ public class Projectile : MonoBehaviour
     }
     void Update()
     {
-        if (enemiesHit != null)
+        if (enemiesHit.Count > 0)
         {
-            Debug.Log("Added sorting group:" + enemiesHit);
+            Debug.Log("Added sorting group:" + enemiesHit.Count);
+
         }
     } 
 
