@@ -7,8 +7,6 @@ public class Projectile : MonoBehaviour
     private Rigidbody2D rb;
     private ProjectilePooler projectilePooler;
 
-    // public EnemyController enemyController;
-
     public float projectileDamage;
 
     private string targetName;
@@ -18,8 +16,6 @@ public class Projectile : MonoBehaviour
     private float minX, maxX, minY, maxY;
 
     private bool hasHit = false;
-
-    private List<EnemyController> enemiesHit = new();
 
     void Awake()
     {
@@ -45,14 +41,6 @@ public class Projectile : MonoBehaviour
     {
         LaunchProjectile();
     }
-    // void Update()
-    // {
-    //     if (enemiesHit.Count > 0)
-    //     {
-    //         Debug.Log("Added sorting group:" + enemiesHit.Count);
-
-    //     }
-    // } 
 
     void FixedUpdate()
     {

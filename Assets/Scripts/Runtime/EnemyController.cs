@@ -16,15 +16,13 @@ public class EnemyController : MonoBehaviour
 	public float enemySpeed;
 	public float enemyHealth;
 	public float enemyDamage;
+
 	float attackTimer;
 	readonly float attackCooldown = 1.0f;
 
 	float flashTimer;
     readonly float flashDuration = 0.3f;
 
-	//private SpriteRenderer spriteRenderer;
-	//private float hitFlashTimer;
-	//private Color defaultColor;
 	private Transform playerPosition;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
