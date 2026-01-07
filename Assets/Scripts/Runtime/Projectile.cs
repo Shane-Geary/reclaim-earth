@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -17,7 +18,7 @@ public class Projectile : MonoBehaviour
 
     private float minX, maxX, minY, maxY;
 
-    [SerializeField] private LayerMask enemyLayer;
+    private List<EnemyController> enemiesHit = new();
 
     void Awake()
     {
@@ -43,6 +44,13 @@ public class Projectile : MonoBehaviour
     {
         LaunchProjectile();
     }
+    void Update()
+    {
+        if (enemiesHit != null)
+        {
+            Debug.Log("Added sorting group:" + enemiesHit);
+        }
+    } 
 
     void FixedUpdate()
     {
@@ -67,6 +75,11 @@ public class Projectile : MonoBehaviour
 
         SortingGroup yAxisSort = collision.gameObject.GetComponentInChildren<SortingGroup>();
         Debug.Log("Collided with: " + yAxisSort.sortingOrder);
+        if (enemy != null && !enemiesHit.Contains(enemy))
+        {
+            // enemy.TakeDamageFromProjectile(projectileDamage);
+            enemiesHit.Add(enemy);
+        }
 
         // enemy?.TakeDamageFromProjectile(projectileDamage);
         ResetProjectile();
