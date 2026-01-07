@@ -91,6 +91,7 @@ public class Projectile : MonoBehaviour
     {
         rb.linearVelocity = Vector2.zero; // Stop movement
         rb.angularVelocity = 0f;
+        hasHit = false;
         projectilePooler.GetComponent<ProjectilePooler>().ReturnToPool(gameObject);
     }
 }
