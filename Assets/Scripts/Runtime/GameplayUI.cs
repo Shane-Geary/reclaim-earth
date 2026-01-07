@@ -1,26 +1,27 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class BarricadeHealthUI : MonoBehaviour
+
+public class GameplayUI : MonoBehaviour
 {
-    private UnityEngine.UIElements.UIDocument uiDocument;
+    private UIDocument uiDocument;
+    private Button playerControlButton;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void OnEnable()
-    {
         uiDocument = GetComponent<UIDocument>();
-        // healthBar = uiDocument.rootVisualElement.Q<ProgressBar>("HealthBar");
+        playerControlButton = uiDocument.rootVisualElement.Q<Button>("PlayerControlButton");
+        playerControlButton.clicked += OnPlayerControlButtonClicked;
+    }
 
+    private void OnPlayerControlButtonClicked()
+    {
+        Debug.Log("Player Control Button Clicked!");
+    }
+
+    void OnDestroy()
+    {
+        playerControlButton.clicked -= OnPlayerControlButtonClicked;
     }
 }

@@ -4317,7 +4317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1662791279}
   - component: {fileID: 1662791278}
-  - component: {fileID: 1662791277}
+  - component: {fileID: 1662791280}
   m_Layer: 5
   m_Name: GameplayUI
   m_TagString: Untagged
@@ -4325,19 +4325,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1662791277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1662791276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4824bf218a9fe014a812f07b858d7683, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BarricadeHealthUI
-  barricade: {fileID: 0}
 --- !u!114 &1662791278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4376,6 +4363,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1662791280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662791276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4824bf218a9fe014a812f07b858d7683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Runtime::GameplayUI
 --- !u!1001 &1779586446
 PrefabInstance:
   m_ObjectHideFlags: 0
