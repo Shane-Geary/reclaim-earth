@@ -17,6 +17,8 @@ public class Projectile : MonoBehaviour
 
     private float minX, maxX, minY, maxY;
 
+    private bool hasHit = false;
+
     private List<EnemyController> enemiesHit = new();
 
     void Awake()
@@ -43,14 +45,14 @@ public class Projectile : MonoBehaviour
     {
         LaunchProjectile();
     }
-    void Update()
-    {
-        if (enemiesHit.Count > 0)
-        {
-            Debug.Log("Added sorting group:" + enemiesHit.Count);
+    // void Update()
+    // {
+    //     if (enemiesHit.Count > 0)
+    //     {
+    //         Debug.Log("Added sorting group:" + enemiesHit.Count);
 
-        }
-    } 
+    //     }
+    // } 
 
     void FixedUpdate()
     {
@@ -71,17 +73,29 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (hasHit) return; // Prevent multiple hits
         EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
+        if (enemy == null) return;
 
-        SortingGroup yAxisSort = collision.gameObject.GetComponentInChildren<SortingGroup>();
-        Debug.Log("Collided with: " + yAxisSort.sortingOrder);
-        if (enemy != null && !enemiesHit.Contains(enemy))
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
+        EnemyController targetEnemy = enemy;
+        float minY = enemy.transform.position.y;
+        foreach (Collider2D colliderHit in hitColliders)
         {
-            // enemy.TakeDamageFromProjectile(projectileDamage);
-            enemiesHit.Add(enemy);
+            EnemyController hitEnemy = colliderHit.GetComponent<EnemyController>();
+            if (hitEnemy != null)
+            {
+                float y = hitEnemy.transform.position.y;
+                if (y < minY)
+                {
+                    minY = y;
+                    targetEnemy = hitEnemy;
+                }
+            }
         }
-
-        // enemy?.TakeDamageFromProjectile(projectileDamage);
+        // Damage the enemy with the lowest Y position (visually aligned hit on y-axis)
+        targetEnemy?.TakeDamageFromProjectile(projectileDamage);
+        hasHit = true;
         ResetProjectile();
     }
 

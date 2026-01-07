@@ -123,7 +123,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("EnemyController detected collision with " + collision.gameObject.name);
+        // Debug.Log("EnemyController detected collision with " + collision.gameObject.name);
 		if (collision.gameObject.CompareTag("Barricade"))
 		{
 			currentBarricadeSection = collision.gameObject.GetComponent<Barricade>();
