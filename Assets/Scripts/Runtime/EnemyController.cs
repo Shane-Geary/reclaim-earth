@@ -101,22 +101,19 @@ public class EnemyController : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if (playerPosition)
+		if (!playerPosition) return;
+
+		if (currentBarricadeSection)
 		{
-			Vector2 direction = (playerPosition.position - transform.position).normalized;
-			Vector2 newPosition = rigidbody2d.position + enemySpeed * Time.fixedDeltaTime * direction;
-			if (!currentBarricadeSection)
-			{
-				rigidbody2d.MovePosition(newPosition);
-				animator.SetBool("1_Move", true);
-			}
-			else
-			{
-				// Stop movement when barricade is present
-				rigidbody2d.linearVelocity = Vector2.zero;
-				animator.SetBool("1_Move", false);
-            }
+			rigidbody2d.linearVelocity = Vector2.zero;
+			animator.SetBool("1_Move", false);
+			return;
 		}
+
+		Vector2 direction = (playerPosition.position - transform.position).normalized;
+
+		rigidbody2d.linearVelocity = direction * enemySpeed;
+		animator.SetBool("1_Move", true);
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)

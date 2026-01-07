@@ -4096,7 +4096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 710308791}
-  enemiesPerWave: 10
+  enemiesPerWave: 5
   spawnRate: 3
 --- !u!4 &1510412631
 Transform:
