@@ -13,7 +13,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private Transform projectileSpawnPoint;
 
     private readonly float fireRate = 1.0f; // Time between shots in seconds
-    private float nextFireTime = 0f;
+    public float nextFireTime = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,23 +23,23 @@ public class WeaponController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Time.time >= nextFireTime)
-        {
-            FireWeapon();
-        }
-    }
+    // void Update()
+    // {
+    //     if (Time.time >= nextFireTime)
+    //     {
+    //         FireWeapon(true);
+    //     }
+    // }
 
-    public void FireWeapon()
+    public void FireWeapon(bool isControlButtonPressed)
     {
-        if (Keyboard.current.spaceKey.IsPressed())
+        if (isControlButtonPressed)
         {
             nextFireTime = Time.time + fireRate;
             animator.Play("Fire", 0, 0f);
             projectilePooler.GetFromPool(projectileSpawnPoint.position);
         }
-        if (!Keyboard.current.spaceKey.IsPressed())
+        if (!isControlButtonPressed)
         {
             animator.Play("Idle", 0, 0f);
         }
