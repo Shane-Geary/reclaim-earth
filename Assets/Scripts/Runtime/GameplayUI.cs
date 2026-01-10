@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 
@@ -26,6 +27,9 @@ public class GameplayUI : MonoBehaviour
         if (Time.time >= weaponController.nextFireTime)
         {
             weaponController.FireWeapon(isControlButtonPressed);
+            if (Keyboard.current.spaceKey.isPressed) {
+                weaponController.FireWeapon(true);
+            }
         }
     }
 }
