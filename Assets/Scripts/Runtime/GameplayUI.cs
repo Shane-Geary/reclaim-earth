@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class GameplayUI : MonoBehaviour
 {
     private UIDocument uiDocument;
-    private Button playerControlButton;
+    private VisualElement playerControlButton;
 
     [SerializeField] private WeaponController weaponController;
 
@@ -16,7 +16,7 @@ public class GameplayUI : MonoBehaviour
     void Start()
     {
         uiDocument = GetComponent<UIDocument>();
-        playerControlButton = uiDocument.rootVisualElement.Q<Button>("PlayerControlButton");
+        playerControlButton = uiDocument.rootVisualElement.Q<VisualElement>("PlayerControlButton");
 
         MouseDownEvent mouseDownEvent = new()
         {
