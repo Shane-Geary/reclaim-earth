@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class WeaponController : MonoBehaviour
 {
     Animator animator;
-    Rigidbody2D rb;
 
     private ProjectilePooler projectilePooler;
 
@@ -18,7 +17,6 @@ public class WeaponController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
         projectilePooler = GameManager.Instance.projectilePooler;
     }
 
@@ -26,7 +24,7 @@ public class WeaponController : MonoBehaviour
     {
         Debug.Log("FireWeapon called.");
         nextFireTime = Time.time + fireRate;
-        animator.Play("Fire", 0, 0f);
+        animator.SetTrigger("Fire");
         projectilePooler.GetFromPool(projectileSpawnPoint.position);
     }
 }

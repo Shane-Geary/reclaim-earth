@@ -3261,6 +3261,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2145663171179554821, guid: 0637e13976276fe428d7cfd8a0a09b46, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145663171179554821, guid: 0637e13976276fe428d7cfd8a0a09b46, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0037
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145663171179554821, guid: 0637e13976276fe428d7cfd8a0a09b46, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7358826137332699953, guid: 0637e13976276fe428d7cfd8a0a09b46, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3598,6 +3610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   projectilePooler: {fileID: 1242624214}
+  weaponController: {fileID: 555025785}
   mainCamera: {fileID: 519420031}
   minX: 0
   maxX: 0
@@ -3938,7 +3951,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4824bf218a9fe014a812f07b858d7683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Game.Runtime::GameplayUI
-  weaponController: {fileID: 555025785}
   isControlButtonPressed: 0
 --- !u!1001 &1779586446
 PrefabInstance:
@@ -4310,6 +4322,10 @@ PrefabInstance:
     - target: {fileID: 2362219368825141782, guid: cb693b427cb7e4f42b6e254130d82897, type: 3}
       propertyPath: m_Name
       value: EnemyGrunt1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362219368825141782, guid: cb693b427cb7e4f42b6e254130d82897, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
