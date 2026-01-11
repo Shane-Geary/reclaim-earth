@@ -17,9 +17,21 @@ public class GameplayUI : MonoBehaviour
     {
         uiDocument = GetComponent<UIDocument>();
         playerControlButton = uiDocument.rootVisualElement.Q<Button>("PlayerControlButton");
+
+        MouseDownEvent mouseDownEvent = new()
+        {
+            target = playerControlButton
+        };
+        playerControlButton.RegisterCallback<MouseDownEvent>(ev => isControlButtonPressed = true);
+
+        MouseUpEvent mouseUpEvent = new()
+        {
+            target = playerControlButton
+        };
+        playerControlButton.RegisterCallback<MouseUpEvent>(ev => isControlButtonPressed = false);
         
-        playerControlButton.RegisterCallback<PointerDownEvent>(ev => isControlButtonPressed = true);
-        playerControlButton.RegisterCallback<PointerUpEvent>(ev => isControlButtonPressed = false);
+        // playerControlButton.RegisterCallback<PointerDownEvent>(ev => isControlButtonPressed = true);
+        // playerControlButton.RegisterCallback<PointerUpEvent>(ev => isControlButtonPressed = false);
     }
 
     void Update()

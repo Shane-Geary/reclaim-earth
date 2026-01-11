@@ -33,15 +33,16 @@ public class WeaponController : MonoBehaviour
 
     public void FireWeapon(bool isControlButtonPressed)
     {
+        Debug.Log("FireWeapon called. isControlButtonPressed: " + isControlButtonPressed);
         if (isControlButtonPressed)
         {
             nextFireTime = Time.time + fireRate;
             animator.Play("Fire", 0, 0f);
             projectilePooler.GetFromPool(projectileSpawnPoint.position);
         }
-        if (!isControlButtonPressed)
-        {
-            animator.Play("Idle", 0, 0f);
-        }
+        // if (!isControlButtonPressed)
+        // {
+        //     animator.Play("Idle", 0, 0f);
+        // }
     }
 }
