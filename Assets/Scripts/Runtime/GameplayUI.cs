@@ -20,30 +20,23 @@ public class GameplayUI : MonoBehaviour
 
         playerControlButton = uiDocument.rootVisualElement.Q<VisualElement>("PlayerControlButton");
 
-        MouseDownEvent mouseDownEvent = new()
-        {
-            target = playerControlButton
-        };
-        playerControlButton.RegisterCallback<MouseDownEvent>(ev => isControlButtonPressed = true);
-
-        MouseUpEvent mouseUpEvent = new()
-        {
-            target = playerControlButton
-        };
-        playerControlButton.RegisterCallback<MouseUpEvent>(ev => isControlButtonPressed = false);
-        
-        // playerControlButton.RegisterCallback<PointerDownEvent>(ev => isControlButtonPressed = true);
-        // playerControlButton.RegisterCallback<PointerUpEvent>(ev => isControlButtonPressed = false);
+        PointerDownEvent pointerDownEvent = new();
+        PointerUpEvent pointerUpEvent = new();
+        playerControlButton.RegisterCallback<PointerDownEvent>(ev => isControlButtonPressed = true);
+        playerControlButton.RegisterCallback<PointerUpEvent>(ev => isControlButtonPressed = false);
     }
 
     void Update()
     {
-        if (Time.time >= weaponController.nextFireTime)
+        if (Time.time >= weaponController.nextFireTime && isControlButtonPressed)
         {
-            weaponController.FireWeapon(isControlButtonPressed);
-            if (Keyboard.current.spaceKey.isPressed) {
-                weaponController.FireWeapon(true);
-            }
+            weaponController.FireWeapon();
         }
+    }
+
+    void OnDestroy()
+    {
+        playerControlButton.UnregisterCallback<PointerDownEvent>(ev => isControlButtonPressed = true);
+        playerControlButton.UnregisterCallback<PointerUpEvent>(ev => isControlButtonPressed = false);
     }
 }
