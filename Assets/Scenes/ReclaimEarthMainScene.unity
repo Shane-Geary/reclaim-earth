@@ -3030,6 +3030,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &555025785 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7837910171860347888, guid: 0637e13976276fe428d7cfd8a0a09b46, type: 3}
+  m_PrefabInstance: {fileID: 824524986}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b265e6f67ca72b4590908f63c9d8575, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &565644912 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6241927573336282286, guid: 67c13458f482d424c89b99677da62065, type: 3}
@@ -3927,7 +3938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4824bf218a9fe014a812f07b858d7683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Game.Runtime::GameplayUI
-  weaponController: {fileID: 0}
+  weaponController: {fileID: 555025785}
   isControlButtonPressed: 0
 --- !u!1001 &1779586446
 PrefabInstance:

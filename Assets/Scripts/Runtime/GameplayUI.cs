@@ -8,7 +8,7 @@ public class GameplayUI : MonoBehaviour
     private UIDocument uiDocument;
     private VisualElement playerControlButton;
 
-    [SerializeField] private WeaponController weaponController;
+    private WeaponController weaponController;
 
     public bool isControlButtonPressed = false;
 
@@ -16,6 +16,8 @@ public class GameplayUI : MonoBehaviour
     void Start()
     {
         uiDocument = GetComponent<UIDocument>();
+        weaponController = GameManager.Instance.weaponController;
+
         playerControlButton = uiDocument.rootVisualElement.Q<VisualElement>("PlayerControlButton");
 
         MouseDownEvent mouseDownEvent = new()

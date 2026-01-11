@@ -4,11 +4,10 @@ using System.Collections.Generic;
 
 public class WeaponController : MonoBehaviour
 {
-
     Animator animator;
     Rigidbody2D rb;
 
-    public ProjectilePooler projectilePooler;
+    private ProjectilePooler projectilePooler;
 
     [SerializeField] private Transform projectileSpawnPoint;
 
@@ -20,6 +19,7 @@ public class WeaponController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        projectilePooler = GameManager.Instance.projectilePooler;
     }
 
     // Update is called once per frame

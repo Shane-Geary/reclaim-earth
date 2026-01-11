@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 
     public ProjectilePooler projectilePooler;
 
+    public WeaponController weaponController;
+
     public Camera mainCamera;
 
     public float minX, maxX, minY, maxY;
@@ -19,7 +21,6 @@ public class GameManager : MonoBehaviour
         }
         
         Instance = this;
-        DontDestroyOnLoad(this.gameObject);
 
         InitCameraBounds();
     }
