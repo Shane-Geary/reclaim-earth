@@ -5,8 +5,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public ProjectilePooler projectilePooler;
-
     public WeaponController weaponController;
+    public PlayerController playerController;
 
     public Camera mainCamera;
 

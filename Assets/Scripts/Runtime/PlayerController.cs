@@ -1,10 +1,7 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-    public InputAction MoveAction;
     Rigidbody2D rb;
     EnemyController enemyController;
 
@@ -13,15 +10,13 @@ public class PlayerController : MonoBehaviour
     public float characterSpeed = 3.0f;
     public float characterHealth;
 
-    private bool isInvisible = false;
-    private float invisibleDuration = 2.0f; // Duration of invisibility after being hit
-
-    Vector2 move;
+    // private bool isInvisible = false;
+    // private float invisibleDuration = 2.0f; // Duration of invisibility after being hit
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        MoveAction.Enable();
+        // MoveAction.Enable();
         rb = GetComponent<Rigidbody2D>();
         enemyController = FindFirstObjectByType<EnemyController>();
 
@@ -31,27 +26,26 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        move = MoveAction.ReadValue<Vector2>(); // Value of the move action
+    // void Update()
+    // {
+        // move = MoveAction.ReadValue<Vector2>(); // Value of the move action
 
         // Animation updates
-        animator.SetBool("1_Move", move.y != 0);
+        // animator.SetBool("1_Move", move.y != 0);
 
-        if (isInvisible)
-        {
-            invisibleDuration -= Time.deltaTime;
-            if (invisibleDuration <= 0)
-            {
-                isInvisible = false;
-                invisibleDuration = 2.0f; // Reset the duration for next hit
-            }
-        }
-    }
+        // if (isInvisible)
+        // {
+        //     invisibleDuration -= Time.deltaTime;
+        //     if (invisibleDuration <= 0)
+        //     {
+        //         isInvisible = false;
+        //         invisibleDuration = 2.0f; // Reset the duration for next hit
+        //     }
+        // }
+    // }
 
-    void FixedUpdate()
+    public void MoveCharacter(Vector2 direction)
     {
-        Vector2 position = (Vector2)rb.position + characterSpeed * Time.deltaTime * move;
-        rb.MovePosition(position);
+        rb.linearVelocity = direction * characterSpeed;
     }
 }

@@ -22,7 +22,7 @@ public class WeaponController : MonoBehaviour
 
     public void FireWeapon()
     {
-        Debug.Log("FireWeapon called.");
+        // Debug.Log("FireWeapon called.");
         nextFireTime = Time.time + fireRate;
         animator.SetTrigger("Fire");
         projectilePooler.GetFromPool(projectileSpawnPoint.position);
