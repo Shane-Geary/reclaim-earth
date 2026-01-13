@@ -3143,7 +3143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.05757187, g: 0.7830189, b: 0.025854412, a: 1}
+  m_Color: {r: 0.30640554, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3781,7 +3781,6 @@ MonoBehaviour:
   projectilePooler: {fileID: 1242624214}
   weaponController: {fileID: 555025785}
   playerController: {fileID: 2026409532}
-  controlButton: {fileID: 613360388}
   mainCamera: {fileID: 519420031}
   minX: 0
   maxX: 0

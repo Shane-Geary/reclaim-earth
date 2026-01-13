@@ -7,13 +7,17 @@ public class ControlButton : MonoBehaviour
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private RectTransform containerRectTransform;
 
+    private PlayerController playerController;
+
     private Finger MovementFinger;
-    private Vector2 MovementAmount;
     private Vector2 startLocalPoint;
 
     private WeaponController weaponController;
 
     private bool isFingerDown = false;
+    private bool isControlButtonMoving = false;
+    private float direction;
+    private float magnitude;
 
     private void OnEnable()
     {
@@ -26,6 +30,7 @@ public class ControlButton : MonoBehaviour
     void Start()
     {
         weaponController = GameManager.Instance.weaponController;
+        playerController = GameManager.Instance.playerController;
     }
 
     void Update()
@@ -36,12 +41,19 @@ public class ControlButton : MonoBehaviour
         }
     }
 
+    void FixedUpdate()
+    {
+        if (isControlButtonMoving)
+        {
+            playerController.MoveCharacter(isControlButtonMoving, direction, magnitude);
+        }
+    }
+
     private void OnTouchFingerDown(Finger TouchedFinger)
     {
         if (MovementFinger != null) return;
 
         MovementFinger = TouchedFinger;
-        MovementAmount = Vector2.zero;
 
         RectTransformUtility.ScreenPointToLocalPointInRectangle(containerRectTransform, MovementFinger.screenPosition, null, out startLocalPoint);
 
@@ -57,8 +69,9 @@ public class ControlButton : MonoBehaviour
     private void OnTouchFingerMove(Finger MovedFinger)
     {
         if (!isFingerDown || MovedFinger != MovementFinger) return;
-
         Vector2 currentLocalPoint;
+        float deadZone = 0.25f;
+
         RectTransformUtility.ScreenPointToLocalPointInRectangle(containerRectTransform, MovedFinger.screenPosition, null, out currentLocalPoint);
 
         Vector2 delta = currentLocalPoint - startLocalPoint;
@@ -66,11 +79,24 @@ public class ControlButton : MonoBehaviour
         // Clamp
         float radius = containerRectTransform.rect.width * 0.5f;
         float clampedX = Mathf.Clamp(delta.x, -radius, radius);
-        // Debug.Log("ClampedDelta: " + clampedDelta);
 
+        // Move Control Button along x-axis, synced to touch movement
         float inputX = clampedX / radius;
-        Debug.Log("Input: " + inputX);
         rectTransform.anchoredPosition = new Vector2(clampedX, 0f);
+
+        // Centered deadzone to stop movement
+        if (Mathf.Abs(inputX) < deadZone)
+        {
+            direction = 0f;
+            isControlButtonMoving = false;
+            playerController.MoveCharacter(isControlButtonMoving, direction, magnitude);
+        }
+        else
+        {
+            direction = Mathf.Sign(inputX);
+            magnitude = Mathf.Abs(inputX);
+            isControlButtonMoving = true;
+        }
     }
 
     private void OnTouchFingerUp(Finger LostFinger)
@@ -78,8 +104,11 @@ public class ControlButton : MonoBehaviour
         if (LostFinger != MovementFinger) return;
 
         isFingerDown = false;
+        isControlButtonMoving = false;
+        direction = 0f;
         MovementFinger = null;
         rectTransform.anchoredPosition = Vector2.zero;
+        playerController.MoveCharacter(isControlButtonMoving, direction, magnitude);
     }
 
     private void OnDisable()

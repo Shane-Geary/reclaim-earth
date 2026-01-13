@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public ProjectilePooler projectilePooler;
     public WeaponController weaponController;
     public PlayerController playerController;
+    public ControlButton controlButton;
 
     public Camera mainCamera;
 
