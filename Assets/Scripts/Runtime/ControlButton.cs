@@ -9,6 +9,7 @@ public class ControlButton : MonoBehaviour
 
     private Finger MovementFinger;
     private Vector2 MovementAmount;
+    private Vector2 startLocalPoint;
 
     private WeaponController weaponController;
 
@@ -42,11 +43,10 @@ public class ControlButton : MonoBehaviour
         MovementFinger = TouchedFinger;
         MovementAmount = Vector2.zero;
 
-        Vector2 localPoint;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, MovementFinger.screenPosition, null, out localPoint);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(containerRectTransform, MovementFinger.screenPosition, null, out startLocalPoint);
 
         float radius = rectTransform.rect.width * 0.5f;
-        bool isTouchInsideThis = localPoint.magnitude <= radius;
+        bool isTouchInsideThis = startLocalPoint.magnitude <= radius;
         
         if (isTouchInsideThis)
         {
@@ -56,17 +56,30 @@ public class ControlButton : MonoBehaviour
 
     private void OnTouchFingerMove(Finger MovedFinger)
     {
-        if (MovedFinger == MovementFinger)
-        {
-            // Vector2 knobPosition;
-            Debug.Log("MovedFinger: " + MovedFinger.currentTouch);
-        }
+        if (!isFingerDown || MovedFinger != MovementFinger) return;
+
+        Vector2 currentLocalPoint;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(containerRectTransform, MovedFinger.screenPosition, null, out currentLocalPoint);
+
+        Vector2 delta = currentLocalPoint - startLocalPoint;
+
+        // Clamp
+        float radius = containerRectTransform.rect.width * 0.5f;
+        float clampedX = Mathf.Clamp(delta.x, -radius, radius);
+        // Debug.Log("ClampedDelta: " + clampedDelta);
+
+        float inputX = clampedX / radius;
+        Debug.Log("Input: " + inputX);
+        rectTransform.anchoredPosition = new Vector2(clampedX, 0f);
     }
 
-    private void OnTouchFingerUp(Finger obj)
+    private void OnTouchFingerUp(Finger LostFinger)
     {
-        MovementFinger = null;
+        if (LostFinger != MovementFinger) return;
+
         isFingerDown = false;
+        MovementFinger = null;
+        rectTransform.anchoredPosition = Vector2.zero;
     }
 
     private void OnDisable()
