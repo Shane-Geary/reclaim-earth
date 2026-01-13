@@ -3180,6 +3180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a1c3bf402a1d64aa315b379f3d4493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Game.Runtime::ControlButton
+  rectTransform: {fileID: 613360385}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
