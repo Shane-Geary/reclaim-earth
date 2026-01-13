@@ -3103,6 +3103,7 @@ GameObject:
   - component: {fileID: 613360385}
   - component: {fileID: 613360387}
   - component: {fileID: 613360386}
+  - component: {fileID: 613360388}
   m_Layer: 5
   m_Name: ControlButton
   m_TagString: Untagged
@@ -3167,6 +3168,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 613360384}
   m_CullTransparentMesh: 1
+--- !u!114 &613360388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613360384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a1c3bf402a1d64aa315b379f3d4493, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Runtime::ControlButton
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
