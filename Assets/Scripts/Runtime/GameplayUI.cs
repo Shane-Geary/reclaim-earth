@@ -12,7 +12,7 @@ public class GameplayUI : MonoBehaviour
     private PlayerController playerController;
 
     private bool isControlButtonPressed = false;
-    private bool isControlButtonMoved = false;
+    // private bool isControlButtonMoved = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,18 +29,18 @@ public class GameplayUI : MonoBehaviour
         playerControlButton.RegisterCallback<PointerUpEvent>(ev =>
         {
             isControlButtonPressed = false;
-            if (isControlButtonMoved)
-            {
-                isControlButtonMoved = false;
-                // playerController.MoveCharacter(Vector2.zero);
-            }
+            // if (isControlButtonMoved)
+            // {
+            //     isControlButtonMoved = false;
+            //     // playerController.MoveCharacter(Vector2.zero);
+            // }
         });
 
-        playerControlButton.RegisterCallback<PointerMoveEvent>(ev => 
-        {
-            isControlButtonMoved = true;
-            MoveControlButton(ev.position);
-        });
+        // playerControlButton.RegisterCallback<PointerMoveEvent>(ev => 
+        // {
+        //     isControlButtonMoved = true;
+        //     MoveControlButton(ev.position);
+        // });
     }
 
     void Update()
@@ -54,18 +54,7 @@ public class GameplayUI : MonoBehaviour
 
     private void MoveControlButton(Vector3 position)
     {
-        Debug.Log("Moving control button: " + position);
-        Vector2 localPosition = playerControlButton.parent.WorldToLocal(position);
-        // Vector2 centerPosition = playerControlButton.layout.size / 2;
-        
-        float controlButtonWidth = playerControlButton.resolvedStyle.width;
-        float minX = 0;
-        float maxX = playerControlButton.parent.resolvedStyle.width - controlButtonWidth;
 
-        // float clampedX = Mathf.Clamp(localPosition.x - controlButtonWidth * 0.5f, minX, maxX);
-
-        float controlMovementX = Mathf.Clamp(position.x, minX, maxX);
-        playerControlButton.style.translate = new Translate(localPosition.x, 0, 0);
     }
 
     void OnDestroy()
