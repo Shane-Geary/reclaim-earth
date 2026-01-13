@@ -5,6 +5,7 @@ using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 public class ControlButton : MonoBehaviour
 {
     [SerializeField] private RectTransform rectTransform;
+    [SerializeField] private RectTransform containerRectTransform;
 
     private Finger MovementFinger;
     private Vector2 MovementAmount;
@@ -36,21 +37,36 @@ public class ControlButton : MonoBehaviour
 
     private void OnTouchFingerDown(Finger TouchedFinger)
     {
-        Debug.Log("Touch Finger Down");
-        isFingerDown = true;
+        if (MovementFinger != null) return;
 
         MovementFinger = TouchedFinger;
         MovementAmount = Vector2.zero;
+
+        Vector2 localPoint;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, MovementFinger.screenPosition, null, out localPoint);
+
+        float radius = rectTransform.rect.width * 0.5f;
+        bool isTouchInsideThis = localPoint.magnitude <= radius;
+        
+        if (isTouchInsideThis)
+        {
+            isFingerDown = true;
+        }
+    }
+
+    private void OnTouchFingerMove(Finger MovedFinger)
+    {
+        if (MovedFinger == MovementFinger)
+        {
+            // Vector2 knobPosition;
+            Debug.Log("MovedFinger: " + MovedFinger.currentTouch);
+        }
     }
 
     private void OnTouchFingerUp(Finger obj)
     {
+        MovementFinger = null;
         isFingerDown = false;
-    }
-
-    private void OnTouchFingerMove(Finger obj)
-    {
-        
     }
 
     private void OnDisable()

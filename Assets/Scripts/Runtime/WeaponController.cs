@@ -13,7 +13,6 @@ public class WeaponController : MonoBehaviour
     private readonly float fireRate = 1.0f; // Time between shots in seconds
     public float nextFireTime = 0f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -22,7 +21,6 @@ public class WeaponController : MonoBehaviour
 
     public void FireWeapon()
     {
-        Debug.Log("FireWeapon called.");
         nextFireTime = Time.time + fireRate;
         animator.SetTrigger("Fire");
         projectilePooler.GetFromPool(projectileSpawnPoint.position);
