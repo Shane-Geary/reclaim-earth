@@ -70,7 +70,7 @@ public class ControlButton : MonoBehaviour
     {
         if (!isFingerDown || MovedFinger != MovementFinger) return;
         Vector2 currentLocalPoint;
-        float deadZone = 0.25f;
+        float deadZone = 0.225f;
 
         RectTransformUtility.ScreenPointToLocalPointInRectangle(containerRectTransform, MovedFinger.screenPosition, null, out currentLocalPoint);
 
@@ -78,7 +78,7 @@ public class ControlButton : MonoBehaviour
 
         // Clamp
         float radius = containerRectTransform.rect.width * 0.5f;
-        float clampedX = Mathf.Clamp(delta.x, -radius, radius);
+        float clampedX = Mathf.Clamp(delta.x, -radius / 1.5f, radius / 1.5f);
 
         // Move Control Button along x-axis, synced to touch movement
         float inputX = clampedX / radius;
@@ -94,7 +94,7 @@ public class ControlButton : MonoBehaviour
         else
         {
             direction = Mathf.Sign(inputX);
-            magnitude = Mathf.Abs(inputX);
+            magnitude = Mathf.Abs(inputX * 2);
             isControlButtonMoving = true;
         }
     }
