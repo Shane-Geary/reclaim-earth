@@ -25,6 +25,7 @@ public class ControlButton : MonoBehaviour
         ETouch.Touch.onFingerDown += OnTouchFingerDown;
         ETouch.Touch.onFingerUp += OnTouchFingerUp;
         ETouch.Touch.onFingerMove += OnTouchFingerMove;
+        
     }
 
     void Start()
