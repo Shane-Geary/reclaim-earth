@@ -6,14 +6,13 @@ public class Barricade : MonoBehaviour
 
     public float maxHealth = 1.0f;
     public float currentHealth;
-    // public bool isHit = false; // Flag to check if the barricade is hit
+
     float flashTimer;
     readonly float flashDuration = 0.3f;
 
     SpriteRenderer spriteRenderer;
     Color originalColor;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -21,7 +20,6 @@ public class Barricade : MonoBehaviour
         currentHealth = maxHealth; // Initialize current health to max health
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (flashTimer > 0)
