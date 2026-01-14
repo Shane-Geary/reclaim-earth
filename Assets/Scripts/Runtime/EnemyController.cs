@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-	Rigidbody2D rigidbody2d;
+	[SerializeField] private Rigidbody2D rigidbody2d;
+	[SerializeField] private Collider2D collider2D;
 	EnemySpawner enemySpawner;
 	Animator animator;
-	PlayerController playerController;
 	public Barricade currentBarricadeSection;
+	[SerializeField] private LayerMask barricadeLayerMask;
+	private float enemyRadius;
 
 	private SpriteRenderer[] spriteRenderers;
 	private Dictionary<SpriteRenderer, Color> originalColors;
@@ -18,20 +20,16 @@ public class EnemyController : MonoBehaviour
 	public float enemyDamage;
 
 	float attackTimer;
-	readonly float attackCooldown = 1.0f;
+	private readonly float attackCooldown = 1.0f;
 
 	float flashTimer;
-    readonly float flashDuration = 0.3f;
+    private readonly float flashDuration = 0.3f;
 
-	private Transform playerPosition;
+	[SerializeField] private Transform playerPosition;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
 	{
-		rigidbody2d = GetComponent<Rigidbody2D>();
-		//spriteRenderer = GetComponent<SpriteRenderer>();
 		animator = GetComponentInChildren<Animator>();
-		playerController = FindFirstObjectByType<PlayerController>();
 
 		enemySpawner = FindFirstObjectByType<EnemySpawner>();
 		playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
@@ -40,6 +38,7 @@ public class EnemyController : MonoBehaviour
 	}
 	void Awake()
 	{
+		enemyRadius = collider2D.bounds.extents.x;
 		spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
 		originalColors = new Dictionary<SpriteRenderer, Color>();
 		foreach (SpriteRenderer sr in spriteRenderers)
@@ -71,7 +70,6 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
 	{
 		if (attackTimer > 0)
@@ -80,9 +78,9 @@ public class EnemyController : MonoBehaviour
 			if (attackTimer <= 0)
 			{
 				OnAttackBarricade();
+				attackTimer = attackCooldown;
 			}
 		}
-
 		if (flashTimer > 0)
         {
             flashTimer -= Time.deltaTime;
@@ -103,43 +101,39 @@ public class EnemyController : MonoBehaviour
 	{
 		if (!playerPosition) return;
 
-		if (currentBarricadeSection)
+		Vector2 currentPosition = transform.position;
+		Vector2 castOrigin = collider2D.bounds.center;
+		Vector2 playerPosVector2 = new(playerPosition.position.x, playerPosition.position.y);
+		Vector2 direction = (playerPosVector2 - currentPosition).normalized;
+
+		float moveDistance = enemySpeed * Time.fixedDeltaTime;
+		float castDistance = enemyRadius / 5;
+
+		RaycastHit2D barricadeCollision = Physics2D.CircleCast(castOrigin, enemyRadius, direction, castDistance, barricadeLayerMask);
+
+		Debug.DrawRay(castOrigin, direction * (castDistance + enemyRadius), Color.red);
+		
+		if (barricadeCollision)
 		{
-			rigidbody2d.linearVelocity = Vector2.zero;
+			if (!currentBarricadeSection)
+			{
+				attackTimer = attackCooldown;
+			}
+
 			animator.SetBool("1_Move", false);
+			currentBarricadeSection = barricadeCollision.collider.GetComponent<Barricade>();
+
 			return;
 		}
 
-		Vector2 direction = (playerPosition.position - transform.position).normalized;
-
-		rigidbody2d.linearVelocity = direction * enemySpeed;
+		Vector2 nextPosition = currentPosition + direction * moveDistance;
+		rigidbody2d.MovePosition(nextPosition);
 		animator.SetBool("1_Move", true);
-	}
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Debug.Log("EnemyController detected collision with " + collision.gameObject.name);
-		if (collision.gameObject.CompareTag("Barricade"))
-		{
-			rigidbody2d.linearVelocity = Vector2.zero;
-			animator.SetBool("1_Move", false);
-			currentBarricadeSection = collision.gameObject.GetComponent<Barricade>();
-			OnAttackBarricade();
-		}
-    }
-
-	private void OnCollisionExit2D(Collision2D collision)
-	{
-		if (collision.gameObject.CompareTag("Barricade"))
-		{
-			currentBarricadeSection = null;
-		}
 	}
 
 	public void OnAttackBarricade()
 	{
 		animator.SetTrigger("2_Attack");
-		attackTimer = attackCooldown;
 	}
 
 	public void TakeDamage(float damage)
