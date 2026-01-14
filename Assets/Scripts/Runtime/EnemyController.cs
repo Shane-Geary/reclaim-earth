@@ -109,7 +109,6 @@ public class EnemyController : MonoBehaviour
 		float moveDistance = enemySpeed * Time.fixedDeltaTime;
 		float castDistance = enemyRadius / 5;
 
-		// Debug.Log("RayCircle: " + rayDistance);
 		RaycastHit2D barricadeCollision = Physics2D.CircleCast(castOrigin, enemyRadius, direction, castDistance, barricadeLayerMask);
 
 		Debug.DrawRay(castOrigin, direction * (castDistance + enemyRadius), Color.red);
@@ -124,52 +123,13 @@ public class EnemyController : MonoBehaviour
 			animator.SetBool("1_Move", false);
 			currentBarricadeSection = barricadeCollision.collider.GetComponent<Barricade>();
 
-			// if (attackTimer > 0)
-			// {
-			// 	attackTimer -= Time.deltaTime;
-			// 	if (attackTimer <= 0)
-			// 	{
-			// 		OnAttackBarricade();
-			// 	}
-			// }
-
 			return;
-			}
+		}
 
 		Vector2 nextPosition = currentPosition + direction * moveDistance;
 		rigidbody2d.MovePosition(nextPosition);
 		animator.SetBool("1_Move", true);
-
-		// if (currentBarricadeSection)
-		// {
-		// 	rigidbody2d.linearVelocity = Vector2.zero;
-		// 	animator.SetBool("1_Move", false);
-		// 	return;
-		// }
-		// Vector2 direction = (playerPosition.position - transform.position).normalized;
-		// rigidbody2d.linearVelocity = direction * enemySpeed;
-		// animator.SetBool("1_Move", true);
 	}
-
-    // private void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     // Debug.Log("EnemyController detected collision with " + collision.gameObject.name);
-	// 	if (collision.gameObject.CompareTag("Barricade"))
-	// 	{
-	// 		rigidbody2d.linearVelocity = Vector2.zero;
-	// 		animator.SetBool("1_Move", false);
-	// 		currentBarricadeSection = collision.gameObject.GetComponent<Barricade>();
-	// 		OnAttackBarricade();
-	// 	}
-    // }
-
-	// private void OnCollisionExit2D(Collision2D collision)
-	// {
-	// 	if (collision.gameObject.CompareTag("Barricade"))
-	// 	{
-	// 		currentBarricadeSection = null;
-	// 	}
-	// }
 
 	public void OnAttackBarricade()
 	{
