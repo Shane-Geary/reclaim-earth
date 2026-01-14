@@ -121,6 +121,8 @@ public class EnemyController : MonoBehaviour
         // Debug.Log("EnemyController detected collision with " + collision.gameObject.name);
 		if (collision.gameObject.CompareTag("Barricade"))
 		{
+			rigidbody2d.linearVelocity = Vector2.zero;
+			animator.SetBool("1_Move", false);
 			currentBarricadeSection = collision.gameObject.GetComponent<Barricade>();
 			OnAttackBarricade();
 		}
