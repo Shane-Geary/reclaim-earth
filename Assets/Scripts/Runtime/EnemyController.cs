@@ -119,7 +119,7 @@ public class EnemyController : MonoBehaviour
 			{
 				attackTimer = attackCooldown;
 			}
-			Debug.Log("Raycast2D: " + barricadeCollision.rigidbody.gameObject);
+
 			animator.SetBool("1_Move", false);
 			currentBarricadeSection = barricadeCollision.collider.GetComponent<Barricade>();
 
