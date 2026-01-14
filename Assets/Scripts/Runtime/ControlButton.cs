@@ -15,7 +15,7 @@ public class ControlButton : MonoBehaviour
     private WeaponController weaponController;
 
     private bool isFingerDown = false;
-    private bool isControlButtonMoving = false;
+    private bool isFingerMoving = false;
     private float direction;
     private float magnitude;
 
@@ -43,9 +43,9 @@ public class ControlButton : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isControlButtonMoving)
+        if (isFingerMoving)
         {
-            playerController.MoveCharacter(isControlButtonMoving, direction, magnitude);
+            playerController.MoveCharacter(isFingerMoving, direction, magnitude);
         }
     }
 
@@ -84,18 +84,18 @@ public class ControlButton : MonoBehaviour
         float inputX = clampedX / radius;
         rectTransform.anchoredPosition = new Vector2(clampedX, 0f);
 
-        // Centered deadzone to stop movement
+        // Centered deadzone to stop movement. MoveCharacter is invoked when movement stops to reset linearVelocity
         if (Mathf.Abs(inputX) < deadZone)
         {
             direction = 0f;
-            isControlButtonMoving = false;
-            playerController.MoveCharacter(isControlButtonMoving, direction, magnitude);
+            isFingerMoving = false;
+            playerController.MoveCharacter(isFingerMoving, direction, magnitude);
         }
         else
         {
             direction = Mathf.Sign(inputX);
             magnitude = Mathf.Abs(inputX * 2);
-            isControlButtonMoving = true;
+            isFingerMoving = true;
         }
     }
 
@@ -104,11 +104,11 @@ public class ControlButton : MonoBehaviour
         if (LostFinger != MovementFinger) return;
 
         isFingerDown = false;
-        isControlButtonMoving = false;
+        isFingerMoving = false;
         direction = 0f;
         MovementFinger = null;
         rectTransform.anchoredPosition = Vector2.zero;
-        playerController.MoveCharacter(isControlButtonMoving, direction, magnitude);
+        playerController.MoveCharacter(isFingerMoving, direction, magnitude);
     }
 
     private void OnDisable()
