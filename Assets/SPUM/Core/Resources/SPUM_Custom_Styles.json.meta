@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: b63f4528eefc847b0a117c09da0c2524
-NativeFormatImporter:
+guid: 9384a9fbf1f0a6e45aff28e53e575533
+TextScriptImporter:
   externalObjects: {}
-  mainObjectFileID: 2100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -11,5 +10,5 @@ AssetOrigin:
   productId: 188715
   packageName: 2D Pixel Unit Maker - SPUM
   packageVersion: 1.8.6
-  assetPath: Assets/SPUM/Basic_Resources/Materials/ColorPicker.mat
+  assetPath: Assets/SPUM/Core/Resources/SPUM_Custom_Styles.json
   uploadId: 829618
