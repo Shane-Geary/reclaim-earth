@@ -5,6 +5,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public ProjectilePooler projectilePooler;
+    public WeaponController weaponController;
+    public PlayerController playerController;
+    public ControlButton controlButton;
 
     public Camera mainCamera;
 
@@ -19,7 +22,6 @@ public class GameManager : MonoBehaviour
         }
         
         Instance = this;
-        DontDestroyOnLoad(this.gameObject);
 
         InitCameraBounds();
     }

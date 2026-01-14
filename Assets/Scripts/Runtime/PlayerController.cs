@@ -1,57 +1,27 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-    public InputAction MoveAction;
-    Rigidbody2D rb;
-    EnemyController enemyController;
+    private Rigidbody2D rb;
+    private Animator animator;
 
-    Animator animator;
+    private float characterSpeed = 1.0f;
 
-    public float characterSpeed = 3.0f;
-    public float characterHealth;
-
-    private bool isInvisible = false;
-    private float invisibleDuration = 2.0f; // Duration of invisibility after being hit
-
-    Vector2 move;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        MoveAction.Enable();
         rb = GetComponent<Rigidbody2D>();
-        enemyController = FindFirstObjectByType<EnemyController>();
-
-        animator = GetComponentInChildren<Animator>();
-        
-        characterHealth = 1.0f;
+        animator = GetComponentInChildren<Animator>();        
     }
 
-    // Update is called once per frame
-    void Update()
+    public void MoveCharacter(bool isMoving, float direction, float magnitude)
     {
-        move = MoveAction.ReadValue<Vector2>(); // Value of the move action
-
-        // Animation updates
-        animator.SetBool("1_Move", move.y != 0);
-
-        if (isInvisible)
+        if (isMoving)
         {
-            invisibleDuration -= Time.deltaTime;
-            if (invisibleDuration <= 0)
-            {
-                isInvisible = false;
-                invisibleDuration = 2.0f; // Reset the duration for next hit
-            }
+            rb.linearVelocity = new Vector2(0f, -Mathf.Sign(direction)) * magnitude * characterSpeed;
         }
-    }
-
-    void FixedUpdate()
-    {
-        Vector2 position = (Vector2)rb.position + characterSpeed * Time.deltaTime * move;
-        rb.MovePosition(position);
+        else
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
     }
 }

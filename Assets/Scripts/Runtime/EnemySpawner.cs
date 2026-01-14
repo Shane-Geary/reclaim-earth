@@ -17,7 +17,6 @@ public class EnemySpawner : MonoBehaviour
     private Queue<GameObject> enemyPool;
     private int enemiesSpawned = 0;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Time.timeScale = 1f;
@@ -41,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
         yield return new WaitForSeconds(spawnRate);
         while (enemiesSpawned < enemiesPerWave)
         {
-            Debug.Log($"Spawning enemy at {Time.time}, Spawn Rate: {spawnRate}");
+            // Debug.Log($"Spawning enemy at {Time.time}, Spawn Rate: {spawnRate}");
             SpawnEnemy();
             yield return new WaitForSecondsRealtime(spawnRate);
         }

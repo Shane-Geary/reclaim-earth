@@ -4,7 +4,6 @@ public class EnemyHitBox : MonoBehaviour
 {
     EnemyController parentController;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         parentController = GetComponentInParent<EnemyController>();

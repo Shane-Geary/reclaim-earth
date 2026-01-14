@@ -63,7 +63,7 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Projectile detected collision with " + other.gameObject.tag);
+        // Debug.Log("Projectile detected collision with " + other.gameObject.tag);
         if (hasHit) return; // Prevent multiple hits
 
         hasHit = true;
@@ -75,34 +75,6 @@ public class Projectile : MonoBehaviour
         
         ResetProjectile();
     }
-
-    // private void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     if (hasHit) return; // Prevent multiple hits
-    //     EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
-    //     if (enemy == null) return;
-
-    //     Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
-    //     EnemyController targetEnemy = enemy;
-    //     float minY = enemy.transform.position.y;
-    //     foreach (Collider2D colliderHit in hitColliders)
-    //     {
-    //         EnemyController hitEnemy = colliderHit.GetComponent<EnemyController>();
-    //         if (hitEnemy != null)
-    //         {
-    //             float y = hitEnemy.transform.position.y;
-    //             if (y < minY)
-    //             {
-    //                 minY = y;
-    //                 targetEnemy = hitEnemy;
-    //             }
-    //         }
-    //     }
-    //     // Damage the enemy with the lowest Y position (visually aligned hit on y-axis)
-    //     targetEnemy?.TakeDamageFromProjectile(projectileDamage);
-    //     hasHit = true;
-    //     ResetProjectile();
-    // }
 
     private void ResetProjectile()
     {
