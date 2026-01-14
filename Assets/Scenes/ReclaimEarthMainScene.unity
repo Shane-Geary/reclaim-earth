@@ -5033,8 +5033,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2362219368825141782, guid: cb693b427cb7e4f42b6e254130d82897, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2377311390875416606, guid: cb693b427cb7e4f42b6e254130d82897, type: 3}
+      propertyPath: collider2D
+      value: 
+      objectReference: {fileID: 7644751350681475497}
+    - target: {fileID: 2377311390875416606, guid: cb693b427cb7e4f42b6e254130d82897, type: 3}
+      propertyPath: rigidbody2d
+      value: 
+      objectReference: {fileID: 7644751350681475498}
     - target: {fileID: 2377311390875416606, guid: cb693b427cb7e4f42b6e254130d82897, type: 3}
       propertyPath: playerPosition
       value: 
@@ -5207,6 +5215,16 @@ PrefabInstance:
 --- !u!1 &7644751350681475496 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2362219368825141782, guid: cb693b427cb7e4f42b6e254130d82897, type: 3}
+  m_PrefabInstance: {fileID: 5461712356461823990}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &7644751350681475497 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 5098663718082347470, guid: cb693b427cb7e4f42b6e254130d82897, type: 3}
+  m_PrefabInstance: {fileID: 5461712356461823990}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &7644751350681475498 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 7266324349760037235, guid: cb693b427cb7e4f42b6e254130d82897, type: 3}
   m_PrefabInstance: {fileID: 5461712356461823990}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807

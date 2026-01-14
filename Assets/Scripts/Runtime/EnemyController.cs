@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-	Rigidbody2D rigidbody2d;
+	[SerializeField] private Rigidbody2D rigidbody2d;
+	[SerializeField] private Collider2D collider2D;
 	EnemySpawner enemySpawner;
 	Animator animator;
 	public Barricade currentBarricadeSection;
@@ -28,7 +29,6 @@ public class EnemyController : MonoBehaviour
 
     void Start()
 	{
-		rigidbody2d = GetComponent<Rigidbody2D>();
 		animator = GetComponentInChildren<Animator>();
 
 		enemySpawner = FindFirstObjectByType<EnemySpawner>();
@@ -38,7 +38,7 @@ public class EnemyController : MonoBehaviour
 	}
 	void Awake()
 	{
-		enemyRadius = GetComponent<Collider2D>().bounds.extents.x;
+		enemyRadius = collider2D.bounds.extents.x;
 		spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
 		originalColors = new Dictionary<SpriteRenderer, Color>();
 		foreach (SpriteRenderer sr in spriteRenderers)
@@ -78,6 +78,7 @@ public class EnemyController : MonoBehaviour
 			if (attackTimer <= 0)
 			{
 				OnAttackBarricade();
+				attackTimer = attackCooldown;
 			}
 		}
 		if (flashTimer > 0)
@@ -101,6 +102,7 @@ public class EnemyController : MonoBehaviour
 		if (!playerPosition) return;
 
 		Vector2 currentPosition = transform.position;
+		Vector2 castOrigin = collider2D.bounds.center;
 		Vector2 playerPosVector2 = new(playerPosition.position.x, playerPosition.position.y);
 		Vector2 direction = (playerPosVector2 - currentPosition).normalized;
 
@@ -108,9 +110,9 @@ public class EnemyController : MonoBehaviour
 		float castDistance = enemyRadius / 5;
 
 		// Debug.Log("RayCircle: " + rayDistance);
-		RaycastHit2D barricadeCollision = Physics2D.CircleCast(currentPosition, enemyRadius, direction, castDistance, barricadeLayerMask);
+		RaycastHit2D barricadeCollision = Physics2D.CircleCast(castOrigin, enemyRadius, direction, castDistance, barricadeLayerMask);
 
-		Debug.DrawRay(currentPosition, direction * (castDistance + enemyRadius), Color.red);
+		Debug.DrawRay(castOrigin, direction * (castDistance + enemyRadius), Color.red);
 		
 		if (barricadeCollision)
 		{
@@ -122,14 +124,14 @@ public class EnemyController : MonoBehaviour
 			animator.SetBool("1_Move", false);
 			currentBarricadeSection = barricadeCollision.collider.GetComponent<Barricade>();
 
-			if (attackTimer > 0)
-			{
-				attackTimer -= Time.deltaTime;
-				if (attackTimer <= 0)
-				{
-					OnAttackBarricade();
-				}
-			}
+			// if (attackTimer > 0)
+			// {
+			// 	attackTimer -= Time.deltaTime;
+			// 	if (attackTimer <= 0)
+			// 	{
+			// 		OnAttackBarricade();
+			// 	}
+			// }
 
 			return;
 			}
@@ -172,7 +174,6 @@ public class EnemyController : MonoBehaviour
 	public void OnAttackBarricade()
 	{
 		animator.SetTrigger("2_Attack");
-		attackTimer = attackCooldown;
 	}
 
 	public void TakeDamage(float damage)
