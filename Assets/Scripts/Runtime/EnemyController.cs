@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
 	Animator animator;
 	public Barricade currentBarricadeSection;
 	[SerializeField] private LayerMask barricadeLayerMask;
+	private float enemyRadius;
 
 	private SpriteRenderer[] spriteRenderers;
 	private Dictionary<SpriteRenderer, Color> originalColors;
@@ -37,6 +38,7 @@ public class EnemyController : MonoBehaviour
 	}
 	void Awake()
 	{
+		enemyRadius = GetComponent<Collider2D>().bounds.extents.x;
 		spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
 		originalColors = new Dictionary<SpriteRenderer, Color>();
 		foreach (SpriteRenderer sr in spriteRenderers)
@@ -70,14 +72,14 @@ public class EnemyController : MonoBehaviour
 
     void Update()
 	{
-		// if (attackTimer > 0)
-		// {
-		// 	attackTimer -= Time.deltaTime;
-		// 	if (attackTimer <= 0)
-		// 	{
-		// 		OnAttackBarricade();
-		// 	}
-		// }
+		if (attackTimer > 0)
+		{
+			attackTimer -= Time.deltaTime;
+			if (attackTimer <= 0)
+			{
+				OnAttackBarricade();
+			}
+		}
 		if (flashTimer > 0)
         {
             flashTimer -= Time.deltaTime;
@@ -101,18 +103,36 @@ public class EnemyController : MonoBehaviour
 		Vector2 currentPosition = transform.position;
 		Vector2 playerPosVector2 = new(playerPosition.position.x, playerPosition.position.y);
 		Vector2 direction = (playerPosVector2 - currentPosition).normalized;
-		float moveDistance = enemySpeed * Time.fixedDeltaTime;
 
-		RaycastHit2D barricadeCollision = Physics2D.Raycast(currentPosition, direction, moveDistance, barricadeLayerMask);
+		float moveDistance = enemySpeed * Time.fixedDeltaTime;
+		float castDistance = enemyRadius / 5;
+
+		// Debug.Log("RayCircle: " + rayDistance);
+		RaycastHit2D barricadeCollision = Physics2D.CircleCast(currentPosition, enemyRadius, direction, castDistance, barricadeLayerMask);
+
+		Debug.DrawRay(currentPosition, direction * (castDistance + enemyRadius), Color.red);
 		
 		if (barricadeCollision)
 		{
-			Debug.Log("Raycast2D: " + barricadeCollision);
+			if (!currentBarricadeSection)
+			{
+				attackTimer = attackCooldown;
+			}
+			Debug.Log("Raycast2D: " + barricadeCollision.rigidbody.gameObject);
 			animator.SetBool("1_Move", false);
 			currentBarricadeSection = barricadeCollision.collider.GetComponent<Barricade>();
-			OnAttackBarricade();
+
+			if (attackTimer > 0)
+			{
+				attackTimer -= Time.deltaTime;
+				if (attackTimer <= 0)
+				{
+					OnAttackBarricade();
+				}
+			}
+
 			return;
-		}
+			}
 
 		Vector2 nextPosition = currentPosition + direction * moveDistance;
 		rigidbody2d.MovePosition(nextPosition);
