@@ -7,8 +7,8 @@ public class EnemyController : MonoBehaviour
 	Rigidbody2D rigidbody2d;
 	EnemySpawner enemySpawner;
 	Animator animator;
-	PlayerController playerController;
 	public Barricade currentBarricadeSection;
+	[SerializeField] private LayerMask barricadeLayerMask;
 
 	private SpriteRenderer[] spriteRenderers;
 	private Dictionary<SpriteRenderer, Color> originalColors;
@@ -18,20 +18,17 @@ public class EnemyController : MonoBehaviour
 	public float enemyDamage;
 
 	float attackTimer;
-	readonly float attackCooldown = 1.0f;
+	private readonly float attackCooldown = 1.0f;
 
 	float flashTimer;
-    readonly float flashDuration = 0.3f;
+    private readonly float flashDuration = 0.3f;
 
-	private Transform playerPosition;
+	[SerializeField] private Transform playerPosition;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
 	{
 		rigidbody2d = GetComponent<Rigidbody2D>();
-		//spriteRenderer = GetComponent<SpriteRenderer>();
 		animator = GetComponentInChildren<Animator>();
-		playerController = FindFirstObjectByType<PlayerController>();
 
 		enemySpawner = FindFirstObjectByType<EnemySpawner>();
 		playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
@@ -71,18 +68,16 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
 	{
-		if (attackTimer > 0)
-		{
-			attackTimer -= Time.deltaTime;
-			if (attackTimer <= 0)
-			{
-				OnAttackBarricade();
-			}
-		}
-
+		// if (attackTimer > 0)
+		// {
+		// 	attackTimer -= Time.deltaTime;
+		// 	if (attackTimer <= 0)
+		// 	{
+		// 		OnAttackBarricade();
+		// 	}
+		// }
 		if (flashTimer > 0)
         {
             flashTimer -= Time.deltaTime;
@@ -103,38 +98,56 @@ public class EnemyController : MonoBehaviour
 	{
 		if (!playerPosition) return;
 
-		if (currentBarricadeSection)
+		Vector2 currentPosition = transform.position;
+		Vector2 playerPosVector2 = new(playerPosition.position.x, playerPosition.position.y);
+		Vector2 direction = (playerPosVector2 - currentPosition).normalized;
+		float moveDistance = enemySpeed * Time.fixedDeltaTime;
+
+		RaycastHit2D barricadeCollision = Physics2D.Raycast(currentPosition, direction, moveDistance, barricadeLayerMask);
+		
+		if (barricadeCollision)
 		{
-			rigidbody2d.linearVelocity = Vector2.zero;
+			Debug.Log("Raycast2D: " + barricadeCollision);
 			animator.SetBool("1_Move", false);
+			currentBarricadeSection = barricadeCollision.collider.GetComponent<Barricade>();
+			OnAttackBarricade();
 			return;
 		}
 
-		Vector2 direction = (playerPosition.position - transform.position).normalized;
-
-		rigidbody2d.linearVelocity = direction * enemySpeed;
+		Vector2 nextPosition = currentPosition + direction * moveDistance;
+		rigidbody2d.MovePosition(nextPosition);
 		animator.SetBool("1_Move", true);
+
+		// if (currentBarricadeSection)
+		// {
+		// 	rigidbody2d.linearVelocity = Vector2.zero;
+		// 	animator.SetBool("1_Move", false);
+		// 	return;
+		// }
+		// Vector2 direction = (playerPosition.position - transform.position).normalized;
+		// rigidbody2d.linearVelocity = direction * enemySpeed;
+		// animator.SetBool("1_Move", true);
 	}
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Debug.Log("EnemyController detected collision with " + collision.gameObject.name);
-		if (collision.gameObject.CompareTag("Barricade"))
-		{
-			rigidbody2d.linearVelocity = Vector2.zero;
-			animator.SetBool("1_Move", false);
-			currentBarricadeSection = collision.gameObject.GetComponent<Barricade>();
-			OnAttackBarricade();
-		}
-    }
+    // private void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     // Debug.Log("EnemyController detected collision with " + collision.gameObject.name);
+	// 	if (collision.gameObject.CompareTag("Barricade"))
+	// 	{
+	// 		rigidbody2d.linearVelocity = Vector2.zero;
+	// 		animator.SetBool("1_Move", false);
+	// 		currentBarricadeSection = collision.gameObject.GetComponent<Barricade>();
+	// 		OnAttackBarricade();
+	// 	}
+    // }
 
-	private void OnCollisionExit2D(Collision2D collision)
-	{
-		if (collision.gameObject.CompareTag("Barricade"))
-		{
-			currentBarricadeSection = null;
-		}
-	}
+	// private void OnCollisionExit2D(Collision2D collision)
+	// {
+	// 	if (collision.gameObject.CompareTag("Barricade"))
+	// 	{
+	// 		currentBarricadeSection = null;
+	// 	}
+	// }
 
 	public void OnAttackBarricade()
 	{
