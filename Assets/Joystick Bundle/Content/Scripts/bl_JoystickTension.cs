@@ -13,6 +13,8 @@ namespace Lovatto.Joystick
 		public CanvasGroup[] axisIndicators = new CanvasGroup[4]; //0 = left, 1 = right, 2 = up, 3 = down
 		public bl_Joystick sourceJoystick;
 
+		public Image imagePointer;
+
 		/// <summary>
 		/// 
 		/// </summary>

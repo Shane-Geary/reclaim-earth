@@ -37,6 +37,12 @@ namespace Lovatto.Joystick
                 script.angleIndicator = EditorGUILayout.ObjectField("Indicator Pivot", script.angleIndicator, typeof(RectTransform), true) as RectTransform;
             }
             script.sourceJoystick = EditorGUILayout.ObjectField("Source Joystick", script.sourceJoystick, typeof(bl_Joystick), true) as bl_Joystick;
+            script.imagePointer = EditorGUILayout.ObjectField(
+                "Image Pointer",
+                script.imagePointer,
+                typeof(Image),
+                true
+            ) as Image;
             EditorGUILayout.EndVertical();
             if (EditorGUI.EndChangeCheck())
             {

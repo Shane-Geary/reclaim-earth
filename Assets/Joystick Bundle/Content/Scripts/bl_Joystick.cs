@@ -21,6 +21,7 @@ public class bl_Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [Header("Reference")]
     public RectTransform StickRect;//The middle joystick UI
     public RectTransform joystickBase;
+    public Image imagePointer;
     //Privates
     private int lastId = -2;
     public Vector3 inputVector { get; set; }
@@ -80,12 +81,15 @@ public class bl_Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             Vector2 pos;
             if (RectTransformUtility.ScreenPointToLocalPointInRectangle(joystickBase, data.position, null, out pos))
             {
+                colorTransition[0].touchColor = colorTransition[0].normalColor;
+                imagePointer.fillAmount = 0.5f;
+
                 pos.x = (pos.x / joystickBase.sizeDelta.x);
                 pos.y = (pos.y / joystickBase.sizeDelta.y);
 
                 inputVector = new Vector3(pos.x, 0, pos.y);
                 inputVector = (inputVector.magnitude > 1.0f) ? inputVector.normalized : inputVector;
-                StickRect.anchoredPosition = new Vector3(inputVector.x * (joystickBase.sizeDelta.x * stickArea), inputVector.z * (joystickBase.sizeDelta.y * stickArea));
+                StickRect.anchoredPosition = new Vector3(inputVector.x * (joystickBase.sizeDelta.x * stickArea), 0f);
             }
         }
     }
@@ -99,6 +103,7 @@ public class bl_Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         //leave the default id again
         if (data.pointerId == lastId)
         {
+            imagePointer.fillAmount = 0f;
             //-2 due -1 is the first touch id
             lastId = -2;
             StickRect.anchoredPosition = Vector3.zero;
@@ -192,7 +197,7 @@ public class bl_Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         public Graphic[] graphics;
         public Color normalColor = Color.white;
-        public Color touchColor = Color.white;
+        public Color touchColor = Color.green;
 
         public void CrossFade(Color color, float duration)
         {
