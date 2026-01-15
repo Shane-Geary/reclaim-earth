@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 8399cb928b506c3408057a6ed4ba1345
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 163743
+  packageName: Joystick Bundle
+  packageVersion: 1.0
+  assetPath: Assets/Joystick Bundle/Content/Scripts/bl_JoystickTension.cs
+  uploadId: 354686

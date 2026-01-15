@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 99ae165901aae014d94e466d1a57347d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 163743
+  packageName: Joystick Bundle
+  packageVersion: 1.0
+  assetPath: Assets/Joystick Bundle/Content/Scripts/bl_Joystick.cs
+  uploadId: 354686
