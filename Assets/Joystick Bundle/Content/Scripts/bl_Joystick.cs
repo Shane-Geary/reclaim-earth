@@ -8,7 +8,7 @@ public class bl_Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [Header("Settings")]
     public bool SmoothReturn = true;
     public bool UseFallbackOnEditor = false;
-    [Range(0.1f, 2f)] public float stickArea = 0.5f;//the ratio of the circumference of the joystick
+    [Range(0.1f, 2f)] public float stickArea = 0.5f; //the ratio of the circumference of the joystick
 
     [Header("Transition")]
     public ColorTransition[] colorTransition;
@@ -68,6 +68,7 @@ public class bl_Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
             for (int i = 0; i < colorTransition.Length; i++)
             {
+                Debug.Log("ColorTransitions:" + colorTransition[i]);
                 colorTransition[i]?.CrossFade(colorTransition[i].touchColor, Duration);
             }
         }
@@ -98,8 +99,11 @@ public class bl_Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 }
                 else
                 {
-                    Debug.Log("Passed Deadzone");
                     colorTransition[0].touchColor = colorTransition[0].normalColor;
+                    for (int i = 0; i < colorTransition.Length; i++)
+                    {
+                        colorTransition[i]?.CrossFade(colorTransition[i].touchColor, Duration);
+                    }
                     imagePointer.fillAmount = 0.5f;
 
                     pos.x = (pos.x / joystickBase.sizeDelta.x);
@@ -122,7 +126,7 @@ public class bl_Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         //leave the default id again
         if (data.pointerId == lastId)
         {
-            imagePointer.fillAmount = 0f;
+            // imagePointer.fillAmount = 0f;
             //-2 due -1 is the first touch id
             lastId = -2;
             StickRect.anchoredPosition = Vector3.zero;
