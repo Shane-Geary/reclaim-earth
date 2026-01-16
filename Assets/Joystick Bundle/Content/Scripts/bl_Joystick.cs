@@ -26,6 +26,10 @@ public class bl_Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private int lastId = -2;
     public Vector3 inputVector { get; set; }
 
+    [Header("Input")]
+    [Range(0f, 0.5f)]
+    private readonly float deadZone = 25.0f;
+
     /// <summary>
     /// 
     /// </summary>
@@ -81,15 +85,30 @@ public class bl_Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             Vector2 pos;
             if (RectTransformUtility.ScreenPointToLocalPointInRectangle(joystickBase, data.position, null, out pos))
             {
-                colorTransition[0].touchColor = colorTransition[0].normalColor;
-                imagePointer.fillAmount = 0.5f;
+                Vector2 rawInput = new(pos.x, pos.y);
+                float magnitude = rawInput.magnitude;
+                Debug.Log("magnitude" + magnitude + "Deadzone" + deadZone);
+                // --- DEADZONE ---
+                if (magnitude < deadZone)
+                {
+                    inputVector = Vector3.zero;
+                    StickRect.anchoredPosition = Vector3.zero;
+                    // imagePointer.fillAmount = 0f;
+                    return;
+                }
+                else
+                {
+                    Debug.Log("Passed Deadzone");
+                    colorTransition[0].touchColor = colorTransition[0].normalColor;
+                    imagePointer.fillAmount = 0.5f;
 
-                pos.x = (pos.x / joystickBase.sizeDelta.x);
-                pos.y = (pos.y / joystickBase.sizeDelta.y);
+                    pos.x = (pos.x / joystickBase.sizeDelta.x);
+                    pos.y = (pos.y / joystickBase.sizeDelta.y);
 
-                inputVector = new Vector3(pos.x, 0, pos.y);
-                inputVector = (inputVector.magnitude > 1.0f) ? inputVector.normalized : inputVector;
-                StickRect.anchoredPosition = new Vector3(inputVector.x * (joystickBase.sizeDelta.x * stickArea), 0f);
+                    inputVector = new Vector3(pos.x, 0, pos.y);
+                    inputVector = (inputVector.magnitude > 1.0f) ? inputVector.normalized : inputVector;
+                    StickRect.anchoredPosition = new Vector3(inputVector.x * (joystickBase.sizeDelta.x * stickArea), 0f);
+                }
             }
         }
     }

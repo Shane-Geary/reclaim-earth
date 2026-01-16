@@ -82,7 +82,7 @@ public class ControlButton : MonoBehaviour
 
         // Move Control Button along x-axis, synced to touch movement
         float inputX = clampedX / radius;
-        rectTransform.anchoredPosition = new Vector2(clampedX, 0f);
+        // rectTransform.anchoredPosition = new Vector2(clampedX, 0f);
 
         // Centered deadzone to stop movement. MoveCharacter is invoked when movement stops to reset linearVelocity
         if (Mathf.Abs(inputX) < deadZone)
@@ -107,7 +107,7 @@ public class ControlButton : MonoBehaviour
         isFingerMoving = false;
         direction = 0f;
         MovementFinger = null;
-        rectTransform.anchoredPosition = Vector2.zero;
+        // rectTransform.anchoredPosition = Vector2.zero;
         playerController.MoveCharacter(isFingerMoving, direction, magnitude);
     }
 
