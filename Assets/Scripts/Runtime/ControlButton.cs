@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.UI;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
 public class ControlButton : MonoBehaviour
 {
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private RectTransform containerRectTransform;
+    [SerializeField] private Image backgroundColor;
 
     private PlayerController playerController;
 
@@ -16,8 +18,11 @@ public class ControlButton : MonoBehaviour
 
     private bool isFingerDown = false;
     private bool isFingerMoving = false;
-    private float direction;
+    public float direction;
     private float magnitude;
+
+    private Color originColor;
+    private readonly float colorTransitionSpeed = 0.5f;
 
     private void OnEnable()
     {
@@ -31,6 +36,8 @@ public class ControlButton : MonoBehaviour
     {
         weaponController = GameManager.Instance.weaponController;
         playerController = GameManager.Instance.playerController;
+
+        // originColor = backgroundColor.color;
     }
 
     void Update()
@@ -53,6 +60,8 @@ public class ControlButton : MonoBehaviour
     {
         if (MovementFinger != null) return;
 
+        // backgroundColor.CrossFadeColor(Color.green, colorTransitionSpeed, false, true);
+
         MovementFinger = TouchedFinger;
 
         RectTransformUtility.ScreenPointToLocalPointInRectangle(containerRectTransform, MovementFinger.screenPosition, null, out startLocalPoint);
@@ -70,17 +79,17 @@ public class ControlButton : MonoBehaviour
     {
         if (!isFingerDown || MovedFinger != MovementFinger) return;
         Vector2 currentLocalPoint;
-        float deadZone = 0.225f;
+        float deadZone = 0.2f;
 
         RectTransformUtility.ScreenPointToLocalPointInRectangle(containerRectTransform, MovedFinger.screenPosition, null, out currentLocalPoint);
 
         Vector2 delta = currentLocalPoint - startLocalPoint;
 
-        // Clamp
+        // // Clamp
         float radius = containerRectTransform.rect.width * 0.5f;
         float clampedX = Mathf.Clamp(delta.x, -radius / 1.5f, radius / 1.5f);
 
-        // Move Control Button along x-axis, synced to touch movement
+        // // Move Control Button along x-axis, synced to touch movement
         float inputX = clampedX / radius;
         rectTransform.anchoredPosition = new Vector2(clampedX, 0f);
 
@@ -102,6 +111,7 @@ public class ControlButton : MonoBehaviour
     private void OnTouchFingerUp(Finger LostFinger)
     {
         if (LostFinger != MovementFinger) return;
+        // backgroundColor.CrossFadeColor(originColor, colorTransitionSpeed, false, true);
 
         isFingerDown = false;
         isFingerMoving = false;

@@ -32,11 +32,11 @@ namespace Lovatto.Joystick
                 script.axisIndicators[2] = EditorGUILayout.ObjectField("Up Indicator", script.axisIndicators[2], typeof(CanvasGroup), true) as CanvasGroup;
                 script.axisIndicators[3] = EditorGUILayout.ObjectField("Down Indicator", script.axisIndicators[3], typeof(CanvasGroup), true) as CanvasGroup;
             }
-            else if (script.indicatorType == bl_JoystickTension.IndicatorType.StickAngle)
-            {
-                script.angleIndicator = EditorGUILayout.ObjectField("Indicator Pivot", script.angleIndicator, typeof(RectTransform), true) as RectTransform;
-            }
-            script.sourceJoystick = EditorGUILayout.ObjectField("Source Joystick", script.sourceJoystick, typeof(bl_Joystick), true) as bl_Joystick;
+            // else if (script.indicatorType == bl_JoystickTension.IndicatorType.StickAngle)
+            // {
+            //     script.angleIndicator = EditorGUILayout.ObjectField("Indicator Pivot", script.angleIndicator, typeof(RectTransform), true) as RectTransform;
+            // }
+            // script.sourceJoystick = EditorGUILayout.ObjectField("Source Joystick", script.sourceJoystick, typeof(bl_Joystick), true) as bl_Joystick;
             script.imagePointer = EditorGUILayout.ObjectField(
                 "Image Pointer",
                 script.imagePointer,
