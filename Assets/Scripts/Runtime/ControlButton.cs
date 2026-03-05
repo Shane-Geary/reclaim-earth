@@ -60,6 +60,16 @@ public class ControlButton : MonoBehaviour
         }
     }
 
+    private void Reset()
+    {
+        isFingerMoving = false;
+        direction = 0f;
+        // rectTransform.anchoredPosition = Vector2.zero;
+        playerController.MoveCharacter(isFingerMoving, direction, magnitude);
+        leftArrow.color = arrowOriginColor;
+        rightArrow.color = arrowOriginColor;
+    }
+
     private void OnTouchFingerDown(Finger TouchedFinger)
     {
         if (MovementFinger != null) return;
@@ -100,12 +110,7 @@ public class ControlButton : MonoBehaviour
         // Centered deadzone to stop movement. MoveCharacter is invoked when movement stops to reset linearVelocity
         if (Mathf.Abs(inputX) < deadZone)
         {
-            direction = 0f;
-            isFingerMoving = false;
-            playerController.MoveCharacter(isFingerMoving, direction, magnitude);
-            
-            leftArrow.color = arrowOriginColor;
-            rightArrow.color = arrowOriginColor;
+            Reset();
         }
         else
         {
@@ -131,11 +136,9 @@ public class ControlButton : MonoBehaviour
         backgroundColor.CrossFadeColor(originColor, colorTransitionSpeed, false, true);
 
         isFingerDown = false;
-        isFingerMoving = false;
-        direction = 0f;
         MovementFinger = null;
+        Reset();
         rectTransform.anchoredPosition = Vector2.zero;
-        playerController.MoveCharacter(isFingerMoving, direction, magnitude);
     }
 
     private void OnDisable()
