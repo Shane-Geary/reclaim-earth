@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private Animator animator;
+    public Animator animator;
 
     private float characterSpeed = 1.0f;
 
@@ -15,9 +15,12 @@ public class PlayerController : MonoBehaviour
 
     public void MoveCharacter(bool isMoving, float direction, float magnitude)
     {
+        animator.SetBool("1_Move", isMoving);
+        Debug.Log("isMoving: " + isMoving);
         if (isMoving)
         {
             rb.linearVelocity = new Vector2(0f, -Mathf.Sign(direction)) * magnitude * characterSpeed;
+            animator.speed = magnitude / 2;
         }
         else
         {

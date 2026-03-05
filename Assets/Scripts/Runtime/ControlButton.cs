@@ -38,7 +38,6 @@ public class ControlButton : MonoBehaviour
         playerController = GameManager.Instance.playerController;
 
         originColor = backgroundColor.color;
-        Debug.Log("BG Color: " + originColor);
     }
 
     void Update()
@@ -99,6 +98,7 @@ public class ControlButton : MonoBehaviour
         {
             direction = 0f;
             isFingerMoving = false;
+            playerController.MoveCharacter(isFingerMoving, direction, magnitude);
         }
         else
         {
