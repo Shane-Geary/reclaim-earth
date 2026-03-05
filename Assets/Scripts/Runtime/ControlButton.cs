@@ -22,7 +22,7 @@ public class ControlButton : MonoBehaviour
     private float magnitude;
 
     private Color originColor;
-    private readonly float colorTransitionSpeed = 0.5f;
+    private readonly float colorTransitionSpeed = 0.3f;
 
     private void OnEnable()
     {
@@ -37,7 +37,8 @@ public class ControlButton : MonoBehaviour
         weaponController = GameManager.Instance.weaponController;
         playerController = GameManager.Instance.playerController;
 
-        // originColor = backgroundColor.color;
+        originColor = backgroundColor.color;
+        Debug.Log("BG Color: " + originColor);
     }
 
     void Update()
@@ -60,7 +61,7 @@ public class ControlButton : MonoBehaviour
     {
         if (MovementFinger != null) return;
 
-        // backgroundColor.CrossFadeColor(Color.green, colorTransitionSpeed, false, true);
+        backgroundColor.CrossFadeColor(Color.green, colorTransitionSpeed, false, true);
 
         MovementFinger = TouchedFinger;
 
@@ -98,7 +99,6 @@ public class ControlButton : MonoBehaviour
         {
             direction = 0f;
             isFingerMoving = false;
-            playerController.MoveCharacter(isFingerMoving, direction, magnitude);
         }
         else
         {
@@ -111,7 +111,7 @@ public class ControlButton : MonoBehaviour
     private void OnTouchFingerUp(Finger LostFinger)
     {
         if (LostFinger != MovementFinger) return;
-        // backgroundColor.CrossFadeColor(originColor, colorTransitionSpeed, false, true);
+        backgroundColor.CrossFadeColor(originColor, colorTransitionSpeed, false, true);
 
         isFingerDown = false;
         isFingerMoving = false;
