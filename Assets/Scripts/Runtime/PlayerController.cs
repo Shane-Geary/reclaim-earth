@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
     public void MoveCharacter(bool isMoving, float direction, float magnitude)
     {
         animator.SetBool("1_Move", isMoving);
-        Debug.Log("isMoving: " + isMoving);
         if (isMoving)
         {
             rb.linearVelocity = new Vector2(0f, -Mathf.Sign(direction)) * magnitude * characterSpeed;

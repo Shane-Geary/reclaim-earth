@@ -8,6 +8,8 @@ public class ControlButton : MonoBehaviour
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private RectTransform containerRectTransform;
     [SerializeField] private Image backgroundColor;
+    [SerializeField] private Image leftArrow;
+    [SerializeField] private Image rightArrow;
 
     private PlayerController playerController;
 
@@ -22,6 +24,7 @@ public class ControlButton : MonoBehaviour
     private float magnitude;
 
     private Color originColor;
+    private Color arrowOriginColor;
     private readonly float colorTransitionSpeed = 0.3f;
 
     private void OnEnable()
@@ -38,6 +41,7 @@ public class ControlButton : MonoBehaviour
         playerController = GameManager.Instance.playerController;
 
         originColor = backgroundColor.color;
+        arrowOriginColor = leftArrow.color;
     }
 
     void Update()
@@ -99,12 +103,25 @@ public class ControlButton : MonoBehaviour
             direction = 0f;
             isFingerMoving = false;
             playerController.MoveCharacter(isFingerMoving, direction, magnitude);
+            
+            leftArrow.color = arrowOriginColor;
+            rightArrow.color = arrowOriginColor;
         }
         else
         {
             direction = Mathf.Sign(inputX);
             magnitude = Mathf.Abs(inputX * 2);
             isFingerMoving = true;
+            Debug.Log(direction);
+            
+            if(direction > 0)
+            {
+                 rightArrow.color = Color.green;
+            }
+            else
+            {
+                leftArrow.color = Color.green;
+            }
         }
     }
 
