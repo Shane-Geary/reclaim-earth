@@ -64,7 +64,6 @@ public class ControlButton : MonoBehaviour
     {
         isFingerMoving = false;
         direction = 0f;
-        // rectTransform.anchoredPosition = Vector2.zero;
         playerController.MoveCharacter(isFingerMoving, direction, magnitude);
         leftArrow.color = arrowOriginColor;
         rightArrow.color = arrowOriginColor;
