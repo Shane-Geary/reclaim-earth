@@ -116,8 +116,7 @@ public class ControlButton : MonoBehaviour
             direction = Mathf.Sign(inputX);
             magnitude = Mathf.Abs(inputX * 2);
             isFingerMoving = true;
-            Debug.Log(direction);
-            
+                     
             if(direction > 0)
             {
                  rightArrow.color = Color.green;
