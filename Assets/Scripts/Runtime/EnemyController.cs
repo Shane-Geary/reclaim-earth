@@ -112,7 +112,7 @@ public class EnemyController : MonoBehaviour
 		RaycastHit2D barricadeCollision = Physics2D.CircleCast(castOrigin, enemyRadius, direction, castDistance, barricadeLayerMask);
 
 		Debug.DrawRay(castOrigin, direction * (castDistance + enemyRadius), Color.red);
-		
+
 		if (barricadeCollision)
 		{
 			if (!currentBarricadeSection)
