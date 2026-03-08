@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
 
     private float minY, maxY;
 
-    private bool hitEdgeOfScreen;
+    private bool hitTopCameraBound = false;
+    private bool hitBottomCameraBound = false;
 
     void Start()
     {
@@ -25,33 +26,46 @@ public class PlayerController : MonoBehaviour
 // Revisit this... can likely be optimized
     void FixedUpdate()
     {
-        // if (transform.position.x < minX || transform.position.x > maxX ||
-        //     transform.position.y < minY || transform.position.y > maxY)
-        // {
-        //     Debug.Log("Edge of Screen");
-        // }
-        if (rb.position.y <= minY || rb.position.y >= (maxY- boxCollider.bounds.size.y))
+        if (rb.position.y >= (maxY - boxCollider.bounds.size.y))
         {
-            Debug.Log("Edge of Screen");
-            hitEdgeOfScreen = true;
+            Debug.Log("Top?");
+            hitTopCameraBound = true;
+            hitBottomCameraBound = false;
         }
         else
         {
-            hitEdgeOfScreen = false;
+            hitTopCameraBound = false;
+        }
+        if (rb.position.y <= minY)
+        {
+            hitBottomCameraBound = true;
+            hitTopCameraBound = false;
+        }
+        else
+        {
+            hitBottomCameraBound = false;
         }
     }
 
     public void MoveCharacter(bool isMoving, float direction, float magnitude)
     {
         animator.SetBool("1_Move", isMoving);
-        if (isMoving && !hitEdgeOfScreen)
+        if (isMoving && !hitBottomCameraBound && !hitTopCameraBound)
         {
             rb.linearVelocity = new Vector2(0f, -Mathf.Sign(direction)) * magnitude * characterSpeed;
             animator.speed = magnitude / 2;
         }
         else
         {
-            rb.linearVelocity = Vector2.zero;
+            if ((hitTopCameraBound && direction > 0) || (hitBottomCameraBound && direction < 0))
+            {
+                rb.linearVelocity = new Vector2(0f, -Mathf.Sign(direction)) * magnitude * characterSpeed;
+                animator.speed = magnitude / 2;
+            }
+            else
+            {
+                rb.linearVelocity = Vector2.zero;
+            }
         }
     }
 }

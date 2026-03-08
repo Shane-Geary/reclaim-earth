@@ -3787,6 +3787,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4004441036013408846, guid: 0637e13976276fe428d7cfd8a0a09b46, type: 3}
+      propertyPath: m_Size.y
+      value: 0.74476194
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004441036013408846, guid: 0637e13976276fe428d7cfd8a0a09b46, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.004084289
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004441036013408846, guid: 0637e13976276fe428d7cfd8a0a09b46, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.38389933
+      objectReference: {fileID: 0}
     - target: {fileID: 7358826137332699953, guid: 0637e13976276fe428d7cfd8a0a09b46, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5449,7 +5461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2362219368825141782, guid: cb693b427cb7e4f42b6e254130d82897, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2377311390875416606, guid: cb693b427cb7e4f42b6e254130d82897, type: 3}
       propertyPath: collider2D
