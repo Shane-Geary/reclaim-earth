@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
     {
         if (rb.position.y >= (maxY - boxCollider.bounds.size.y))
         {
-            Debug.Log("Top?");
             hitTopCameraBound = true;
             hitBottomCameraBound = false;
         }
